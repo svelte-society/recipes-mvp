@@ -841,7 +841,7 @@ From this point you could add whatever functionality you wanted.
 
 Edit: Probably worth mentioning that this is a full writable implementation, only the subscribe method and its return value (an unsubscribe function) are required to be a valid store.
 
-## Routing
+## Routing
 
 *some content*
 
@@ -862,7 +862,7 @@ Edit: Probably worth mentioning that this is a full writable implementation, onl
 - building a simple express-based SSR server thing
 - putting it all together
 
-## Preprocessors
+## Preprocessors
 
 > This article references `svelte.preprocess` throughout but you may be more familiar with the `preprocess` option of `svelte-loader` or `rollup-plugin-svelte`. This `preprocess` option calls `svelte.preprocess` internally. The bundler plugin gives you easy access to it, so you don't need to transform your components before compilation manually.
 
