@@ -28,6 +28,7 @@ All examples have some variation "with Svelte" appended to them in an attempt to
 - [Packaging Svelte Components for npm](#packaging-svelte-components-for-npm)
 - [Dockerize a Svelte App](#dockerize-a-svelte-app)
 - [Practical use of Svelte slots with Google Maps](#practical-use-of-svelte-slots-with-google-maps)
+- [How to make a pre-processor that makes it possible to use PUG/Jade](#how-to-make-a-pre-processor-that-makes-it-possible-to-use-pugjade)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
