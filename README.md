@@ -184,15 +184,28 @@ Of course, it is up to you what UX you want - you may wish to keep displaying st
 {/await}
 ```
 
+### Dealing with CORS Errors in Svelte
+
+Svelte is purely a frontend framework, so it will be subject to the same CORS restrictions that any frontend framework faces. You will run into CORS issues in two ways:
+
+1. In local development (making requests from `http://localhost` to `https://myapi.com`)
+2. In production (making requests from `https://mydomain.com` to `https://theirapi.com`)
+
+You can solve both with a range of solutions from having a local API dev server or proxying requests through a serverless function or API gateway. None are responsibilities of Svelte but here are some helpful resources that may help:
+
+- https://alligator.io/nodejs/solve-cors-once-and-for-all-netlify-dev/
+- https://zeit.co/docs/v2/serverless-functions/introduction
+- https://docs.begin.com/en/http-functions/api-reference
+- https://aws.amazon.com/blogs/mobile/amplify-framework-local-mocking/
+
+If you happen to be running [a Sapper app](https://sapper.svelte.dev/), then you may take advantage of preloading data server-side in Sapper: https://sapper.svelte.dev/docs#Preloading.
+
 You now have all you need to work with Data APIs in Svelte.
-
-### Working with Data in Svelte
-
-Once we have
 
 ### Further Links
 
-- 
+- Svelte Suspense discussion: https://github.com/sveltejs/svelte/issues/1736
+- Your link here?
 
 ## Authentication with Svelte
 
