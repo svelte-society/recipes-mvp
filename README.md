@@ -10,11 +10,12 @@ All examples have some variation "with Svelte" appended to them in an attempt to
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
-- [Authentication with Svelte](#authentication-with-svelte)
 - [Using Fetch to Consume APIs with Svelte](#using-fetch-to-consume-apis-with-svelte)
   - [Fetching on Component Mount in Svelte](#fetching-on-component-mount-in-svelte)
+  - [Fetching on Button Click in Svelte](#fetching-on-button-click-in-svelte)
   - [Working with Data in Svelte](#working-with-data-in-svelte)
-  - [Related Reading and More Tips](#related-reading-and-more-tips)
+  - [Further Links](#further-links)
+- [Authentication with Svelte](#authentication-with-svelte)
 - [Form Validation with Svelte](#form-validation-with-svelte)
 - [Editable SVG Icon Systems with Svelte](#editable-svg-icon-systems-with-svelte)
 - [Create a CMS-Powered Blog with Svelte](#create-a-cms-powered-blog-with-svelte)
