@@ -678,3 +678,11 @@ function writable(init) {
 From this point you could add whatever functionality you wanted.
 
 Edit: Probably worth mentioning that this is a full writable implementation, only the subscribe method and its return value (an unsubscribe function) are required to be a valid store.
+
+## Routing
+
+- A map for an app: what is routing
+- Different approaches
+  - XML-stylee: [svelte-routing](https://github.com/EmilTholin/svelte-routing)
+  - Express-stylee: [navaid](https://github.com/lukeed/navaid)
+  - FS based routing: [routify](https://routify.dev/)
