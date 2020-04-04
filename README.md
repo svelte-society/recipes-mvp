@@ -13,7 +13,7 @@ All examples have some variation "with Svelte" appended to them in an attempt to
 - [Using Fetch to Consume APIs with Svelte](#using-fetch-to-consume-apis-with-svelte)
   - [Fetching on Component Mount in Svelte](#fetching-on-component-mount-in-svelte)
   - [Fetching on Button Click in Svelte](#fetching-on-button-click-in-svelte)
-  - [Working with Data in Svelte](#working-with-data-in-svelte)
+  - [Dealing with CORS Errors in Svelte](#dealing-with-cors-errors-in-svelte)
   - [Further Links](#further-links)
 - [Authentication with Svelte](#authentication-with-svelte)
 - [Form Validation with Svelte](#form-validation-with-svelte)
