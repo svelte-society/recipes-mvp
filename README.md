@@ -207,6 +207,10 @@ You now have all you need to work with Data APIs in Svelte.
 - Svelte Suspense discussion: https://github.com/sveltejs/svelte/issues/1736
 - Your link here?
 
+## Using SASS and TypeScript with Svelte Preprocessors
+
+*to be written*
+
 ## Authentication with Svelte
 
 *to be written*
