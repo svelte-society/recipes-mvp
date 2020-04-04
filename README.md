@@ -259,3 +259,7 @@ You now have all you need to work with Data APIs in Svelte.
 ## Practical use of Svelte slots with Google Maps
 
 *to be written*
+
+## How to make a pre-processor that makes it possible to use PUG/Jade
+
+*to be written*
