@@ -34,7 +34,7 @@ All examples have some variation "with Svelte" appended to them in an attempt to
 
 Working with external data in Svelte is important. Here's a guide.
 
-*Maintiners of this Recipe: [swyx](https://twitter.com/swyx)*
+*Maintainers of this Recipe: [swyx](https://twitter.com/swyx)*
 
 ### Fetching on Component Mount in Svelte
 
