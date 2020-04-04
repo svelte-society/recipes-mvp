@@ -6,8 +6,28 @@ All examples have some variation "with Svelte" appended to them in an attempt to
 
 ## Table of Contents
 
-<!-- START doctoc -->
-<!-- END doctoc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Authentication with Svelte](#authentication-with-svelte)
+- [Using Fetch to Consume APIs with Svelte](#using-fetch-to-consume-apis-with-svelte)
+  - [Fetching on Component Mount in Svelte](#fetching-on-component-mount-in-svelte)
+  - [Working with Data in Svelte](#working-with-data-in-svelte)
+  - [Related Reading and More Tips](#related-reading-and-more-tips)
+- [Form Validation with Svelte](#form-validation-with-svelte)
+- [Editable SVG Icon Systems with Svelte](#editable-svg-icon-systems-with-svelte)
+- [Create a CMS-Powered Blog with Svelte](#create-a-cms-powered-blog-with-svelte)
+- [Unit Testing Svelte Components](#unit-testing-svelte-components)
+- [Creating Custom Scroll Actions with Svelte](#creating-custom-scroll-actions-with-svelte)
+- [Debugging Svelte Apps in VS Code](#debugging-svelte-apps-in-vs-code)
+- [Avoiding Memory Leaks with Svelte](#avoiding-memory-leaks-with-svelte)
+- [Client-Side Storage with Svelte](#client-side-storage-with-svelte)
+- [Packaging Svelte Components for npm](#packaging-svelte-components-for-npm)
+- [Dockerize a Svelte App](#dockerize-a-svelte-app)
+- [Practical use of Svelte slots with Google Maps](#practical-use-of-svelte-slots-with-google-maps)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Authentication with Svelte
 
