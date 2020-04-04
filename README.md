@@ -686,3 +686,12 @@ Edit: Probably worth mentioning that this is a full writable implementation, onl
   - XML-stylee: [svelte-routing](https://github.com/EmilTholin/svelte-routing)
   - Express-stylee: [navaid](https://github.com/lukeed/navaid)
   - FS based routing: [routify](https://routify.dev/)
+
+## Server Side Rendering
+
+- What is it
+- What does the API look like
+- building an  SSR component
+- hydrating an SSR cmponent with a client build
+- building a simple express-based SSR server thing
+- putting it all together
