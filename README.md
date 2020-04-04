@@ -15,6 +15,7 @@ All examples have some variation "with Svelte" appended to them in an attempt to
   - [Fetching on Button Click in Svelte](#fetching-on-button-click-in-svelte)
   - [Dealing with CORS Errors in Svelte](#dealing-with-cors-errors-in-svelte)
   - [Further Links](#further-links)
+- [Using SASS and TypeScript with Svelte Preprocessors](#using-sass-and-typescript-with-svelte-preprocessors)
 - [Authentication with Svelte](#authentication-with-svelte)
 - [Form Validation with Svelte](#form-validation-with-svelte)
 - [Editable SVG Icon Systems with Svelte](#editable-svg-icon-systems-with-svelte)
