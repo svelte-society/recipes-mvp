@@ -52,7 +52,7 @@ All examples have some variation "with Svelte" appended to them in an attempt to
     - [Linked stores](#linked-stores)
   - [a custom implementation of the builtin store](#a-custom-implementation-of-the-builtin-store)
 - [Server Side Rendering](#server-side-rendering)
-  - [`svelte.preprocess`](#sveltepreprocess)
+  - [svelte.preprocess](#sveltepreprocess)
   - [Markup preprocessors](#markup-preprocessors)
   - [Script preprocessors](#script-preprocessors)
   - [Style preprocessors](#style-preprocessors)
@@ -803,14 +803,6 @@ Since we have written custom `set` methods, we are also free to bind to each ind
 
 See it in action below. The following example uses the `synced` store to convert between Celsius and Fahrenheit in both directions.
 
-<div class="max">
-  <iframe
-    title="A Custom Synced Store"
-    src="/repl/embed?example=cookbook-svelte-store-synced"
-    scrolling="no"
-  ></iframe>
-</div>
-
 *the stuff i actually wrote ends here, this is a fun example that could be included though*
 
 ### a custom implementation of the builtin store
@@ -851,6 +843,8 @@ Edit: Probably worth mentioning that this is a full writable implementation, onl
 
 ## Routing
 
+*some content*
+
 - A map for an app: what is routing
 - Different approaches
   - XML-stylee: [svelte-routing](https://github.com/EmilTholin/svelte-routing)
@@ -859,13 +853,14 @@ Edit: Probably worth mentioning that this is a full writable implementation, onl
 
 ## Server Side Rendering
 
+*some content*
+
 - What is it
 - What does the API look like
 - building an  SSR component
 - hydrating an SSR cmponent with a client build
 - building a simple express-based SSR server thing
 - putting it all together
-
 
 ## Preprocessors
 
@@ -875,7 +870,7 @@ The Svelte compiler expects all components it receives to be valid Svelte syntax
 
 With `svelte.preprocess` you have a great deal of flexibility in how you write your components while ensuring that the Svelte compiler receives a plain component.
 
-### `svelte.preprocess`
+### svelte.preprocess
 
 Svelte's `preprocess` method expects an object or an array of objects with one or more of `markup`, `script`, and `style` properties, each being a function receiving the source code as an argument. The preprocessors run in this order.
 
