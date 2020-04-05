@@ -157,7 +157,7 @@ However, there are some problems with this approach. You may still need to decla
 
 **Method 2: Await Blocks**
 
-It would be better to make all this commonplace UI idioms declarative. Await blocks to the rescue again:
+It would be better to make all these commonplace UI idioms declarative. Await blocks to the rescue again:
 
 ```html
 <!-- https://svelte.dev/repl/98ec1a9a45af4d75ac5bbcb1b5bcb160?version=3.20.1 -->
