@@ -288,7 +288,9 @@ You now have all you need to work with Data APIs in Svelte.
       body: JSON.stringify(combined) // body data type must match "Content-Type" header
     });
     // One option is to use:
-    // return await response.json(); // parses JSON response into native JavaScript objects    // But since we're printing out the response in an HTML element,
+    // return await response.json(); 
+    // parses JSON response into native JavaScript objects    
+    // But since we're printing out the response in an HTML element,
     // this example returns the `.text()` promise.
     let text = await response.text();
     // This next line is verbose, but it's meant to demonstrate
