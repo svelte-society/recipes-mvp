@@ -244,7 +244,94 @@ You now have all you need to work with Data APIs in Svelte.
 
 ## Authentication with Svelte
 
-*to be written*
+**Method 1: JSON Fetch using a POST method (same-origin cors headers)**
+
+```js
+<script>
+  import { session } from './session.js';
+  /* session.js:
+   * ===========
+   * import { writable } from 'svelte/store';
+   * export const session = writable({ data: "" })
+   */
+
+  // Alternatively, you could write:
+  //    export const AUTH_SERVER_URL;
+  // instead of:
+  //    const AUTH_SERVER_URL = "...";
+  // to set the destination using the props spread
+  
+  const AUTH_SERVER_URL = "https://authserverurl.com/api/login";
+  let email = "";
+  let password = "";
+  let combined;
+  let data;
+
+  $: combined = {email: email, password: password};
+  $: if(data) {
+      $session.data = data;
+     }
+
+  async function authenticate() {
+    // Gathered from: https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+    let response = await fetch(AUTH_SERVER_URL, {
+      method: 'post',
+      mode: 'cors', // no-cors, *cors, same-origin,
+      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json'
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      redirect: 'follow', // manual, *follow, error
+      referrerPolicy: 'no-referrer', // no-referrer, *client
+      body: JSON.stringify(combined) // body data type must match "Content-Type" header
+    });
+    // One option is to use:
+    // return await response.json(); // parses JSON response into native JavaScript objects    // But since we're printing out the response in an HTML element,
+    // this example returns the `.text()` promise.
+    let text = await response.text();
+    // This next line is verbose, but it's meant to demonstrate
+    // what happens when we want to use a reactive value change
+    // to bind our new information using `$: if(data) {...}`
+    let data = text;
+    return text;
+  }
+
+  function submitHandler() {
+    /* This promise needs to be awaited somewhere -- 
+     * either in the HTML body via `{#await}` tags,
+     * in a `<script>` tag, or in an imported `.js` module.
+     */ 
+    result = authenticate();
+    // Clear out the data fields
+    email = "";
+    password = "";
+  }    
+</script>
+
+<div>
+  <form on:submit|preventDefault={submitHandler}>
+    <input type="text" bind:value={email}>
+    <input type="password" bind:value={password}>
+    <button>Submit</button>
+  </form>
+</div>
+<div>
+  {#if result===undefined}
+    <p />
+  {:else}
+    {#await result}
+      <div><span>Logging in...</span></div>
+    {:then value}
+      <div><span>{value}</span></div>
+    {:catch error}
+      <div><span>{error.message}</span></div>
+    {/await}
+  {/if}
+</div>
+
+```
 
 ## Form Validation with Svelte
 
