@@ -13,7 +13,7 @@ All examples have some variation "with Svelte" appended to them in an attempt to
 **Table of Contents**
 
 - [Build Setup Recipes](#build-setup-recipes)
-  - [Using SASS and TypeScript with Svelte Preprocessors](#using-sass-and-typescript-with-svelte-preprocessors)
+  - [Using Svelte Preprocessors (for SCSS, TypeScript, and Babel)](#using-svelte-preprocessors-for-scss-typescript-and-babel)
   - [Preprocessors](#preprocessors)
     - [svelte.preprocess](#sveltepreprocess)
     - [Markup preprocessors](#markup-preprocessors)
