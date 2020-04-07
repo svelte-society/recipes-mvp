@@ -4,7 +4,7 @@ MVP repo to just start collecting recipes for [Svelte Community](https://github.
 
 All examples have some variation "with Svelte" appended to them in an attempt to optimize for searchability.
 
-> NOTE: This is a new project! What you see below is an evolving work in progress. Please see [Project Goals](https://github.com/svelte-society/recipes-mvp/issues/9) for more.
+> NOTE: This is a new project! What you see below is an evolving work in progress. Please see [Project Goals](https://github.com/svelte-society/recipes-mvp/issues/9) for more. We actively need contributions of ideas and content!
 
 # Table of Contents
 
@@ -77,9 +77,11 @@ All examples have some variation "with Svelte" appended to them in an attempt to
 
 # Build Setup Recipes
 
-## Using SASS and TypeScript with Svelte Preprocessors
+## Using Svelte Preprocessors (for SCSS, TypeScript, and Babel)
 
 _to be written_
+
+related issues: https://github.com/svelte-society/recipes-mvp/issues/8
 
 ## Preprocessors
 
