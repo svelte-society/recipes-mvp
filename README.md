@@ -4,6 +4,8 @@ MVP repo to just start collecting recipes for [Svelte Community](https://github.
 
 All examples have some variation "with Svelte" appended to them in an attempt to optimize for searchability.
 
+> NOTE: This is a new project! What you see below is an evolving work in progress. Please see [Project Goals](https://github.com/svelte-society/recipes-mvp/issues/9) for more.
+
 # Table of Contents
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
