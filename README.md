@@ -10,60 +10,32 @@ All examples have some variation "with Svelte" appended to them in an attempt to
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**
+<details>
+<summary>Table of Contents</summary>
 
 - [Build Setup Recipes](#build-setup-recipes)
   - [Using Svelte Preprocessors (for SCSS, TypeScript, and Babel)](#using-svelte-preprocessors-for-scss-typescript-and-babel)
   - [Preprocessors](#preprocessors)
-    - [svelte.preprocess](#sveltepreprocess)
-    - [Markup preprocessors](#markup-preprocessors)
-    - [Script preprocessors](#script-preprocessors)
-    - [Style preprocessors](#style-preprocessors)
   - [How to make a pre-processor that makes it possible to use PUG/Jade](#how-to-make-a-pre-processor-that-makes-it-possible-to-use-pugjade)
 - [Svelte Language Fundamentals](#svelte-language-fundamentals)
   - [Reactivity](#reactivity)
-    - [Reactive assignments](#reactive-assignments)
-      - [Top-level variables](#top-level-variables)
-      - [`each` blocks](#each-blocks)
-      - [Variables not values](#variables-not-values)
-      - [Shadowed variables](#shadowed-variables)
-    - [Reactive Declarations](#reactive-declarations)
-      - [Defining dependencies](#defining-dependencies)
-      - [Variable deconstruction](#variable-deconstruction)
-      - [Hiding values from reactive declarations](#hiding-values-from-reactive-declarations)
 - [Svelte Component Recipes](#svelte-component-recipes)
   - [Using Fetch to Consume APIs with Svelte](#using-fetch-to-consume-apis-with-svelte)
-    - [Fetching on Component Mount in Svelte](#fetching-on-component-mount-in-svelte)
-    - [Fetching on Button Click in Svelte](#fetching-on-button-click-in-svelte)
-    - [Dealing with CORS Errors in Svelte](#dealing-with-cors-errors-in-svelte)
-    - [Further Links](#further-links)
   - [Form Validation with Svelte](#form-validation-with-svelte)
   - [Client-Side Storage with Svelte](#client-side-storage-with-svelte)
 - [Svelte Store Recipes](#svelte-store-recipes)
   - [Stores](#stores)
-    - [The store contract](#the-store-contract)
-      - [`store.subscribe`](#storesubscribe)
-      - [`store.set`](#storeset)
-    - [Custom stores](#custom-stores)
-      - [Linked stores](#linked-stores)
-    - [a custom implementation of the builtin store](#a-custom-implementation-of-the-builtin-store)
 - [Svelte Action Recipes](#svelte-action-recipes)
   - [Creating Custom Scroll Actions with Svelte](#creating-custom-scroll-actions-with-svelte)
 - [Svelte Transition Recipes](#svelte-transition-recipes)
 - [Svelte App-Level Design Patterns](#svelte-app-level-design-patterns)
   - [Routing with Svelte](#routing-with-svelte)
-    - [Further Links](#further-links-1)
   - [Authentication with Svelte](#authentication-with-svelte)
   - [Server Side Rendering](#server-side-rendering)
 - [Svelte Performance Tips](#svelte-performance-tips)
   - [Avoiding Memory Leaks with Svelte](#avoiding-memory-leaks-with-svelte)
 - [Testing and Debugging Svelte](#testing-and-debugging-svelte)
   - [Unit Testing Svelte Components](#unit-testing-svelte-components)
-    - [Creating a component](#creating-a-component)
-    - [Changing component props](#changing-component-props)
-    - [Testing component events](#testing-component-events)
-    - [Testing slots](#testing-slots)
-    - [Testing the context API](#testing-the-context-api)
   - [Debugging Svelte Apps in VS Code](#debugging-svelte-apps-in-vs-code)
 - [Publishing Svelte Components/Deploying Svelte Apps](#publishing-svelte-componentsdeploying-svelte-apps)
   - [Packaging Svelte Components for npm](#packaging-svelte-components-for-npm)
@@ -73,6 +45,7 @@ All examples have some variation "with Svelte" appended to them in an attempt to
   - [Practical use of Svelte slots with Google Maps](#practical-use-of-svelte-slots-with-google-maps)
   - [Create a CMS-Powered Blog with Svelte](#create-a-cms-powered-blog-with-svelte)
 
+</details>
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 # Build Setup Recipes
