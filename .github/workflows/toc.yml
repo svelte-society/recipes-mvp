@@ -4,9 +4,9 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-  schedule:
-    # * is a special character in YAML so you have to quote this string
-    - cron:  '0 8 * * *' # every day at 8am
+#   schedule:
+#     # * is a special character in YAML so you have to quote this string
+#     - cron:  '0 8 * * *' # every day at 8am
 name: TOC Generator
 jobs:
   generateTOC:
@@ -14,3 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: technote-space/toc-generator@v2
+        with:
+          FOLDING: true
+          MAX_HEADER_LEVEL: 2
+          COMMIT_NAME: ToC-GitHub-Action
