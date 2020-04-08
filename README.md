@@ -244,12 +244,13 @@ You now have all you need to work with Data APIs in Svelte.
 
 ## Authentication with Svelte
 
-Figuring out how to authenticate with Svelte can be tricky business. The official docs for Sapper, the Server-Side Rendering platform designed for Svelte, recognize that session management should be handled by some other service such as [expression-session](https://github.com/expressjs/session), but you are not limited to using any backend with Svelte. Moreover, Sapper does not have native support for persistent sessions (as of April 2020).
+Figuring out how to authenticate with Svelte can be tricky business. The official docs for Sapper, the Server-Side Rendering platform designed for Svelte, recognize that session management should be handled by some other service such as [express-session](https://github.com/expressjs/session), but you are not limited to using any backend with Svelte. Moreover, Sapper does not have native support for persistent sessions (as of April 2020).
 
 Your best options might be to offload session management from Svelte to some other web server that is configured to use HTTPS. In many cases, your clients will want to authenticate using a modern web browser, and most modern web browsers implement strong security regulations over how data gets transferred between a server and a client. During development, you might see this error: ["Reason: CORS header 'Access-Control-Allow-Origin' missing"](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors/CORSMissingAllowOrigin), and if you do then it may be worth a few minutes to read up on ["Dealing with CORS Errors in Svelte"](https://github.com/svelte-society/recipes-mvp#dealing-with-cors-errors-in-svelte).
 
 
 **Method 1: JSON Fetch using a POST method (same-origin cors headers)**
+
 While Svelte may not necessary require an asynchronous authentication method, your application's performance could benefit from trying to use one. It is generally accepted that `POST` methods are the way to go, since they do not append sensitive data after the request URI. In this example, we incorporate writable stores (for saving the auth server's response), reactive statements for building the data body of the POST request, and specialized Svelte tags `{#await <promise>}`, `{:then <awaited response>}`, `{:catch <some error>}` to render a different HTML tag at each stage of the authentication request.
 
 It is important to note that this example includes `preventDefault` to prevent the runtime from making an HTTP request at the instant when the form element gets created: `<form on:submit|preventDefault={submitHandler}>`.
