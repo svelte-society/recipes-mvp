@@ -789,13 +789,13 @@ It is important to note that this example includes `preventDefault` to prevent t
       referrerPolicy: 'no-referrer', // no-referrer, *client
       body: JSON.stringify(combined) // body data type must match "Content-Type" header
     });
-    let text = await response.text();
+    
     // One additional option is to use:
     // ... = await response.json(); 
     // But since we're printing out the response in an HTML element,
     // it is convenient to await the `.text()` promise.
-    
     let text = await response.text();
+
     // This next line is verbose, but it's meant to demonstrate
     // what happens when we want to use a reactive value change
     // to bind our new information using `$: if(data) {...}`
