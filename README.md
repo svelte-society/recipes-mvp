@@ -488,6 +488,50 @@ Of course, it is up to you what UX you want - you may wish to keep displaying st
 {/await}
 ```
 
+**Method 4: Data Stores**
+
+One small flaw with our examples so far is that Svelte will still try to update components that unmount while a promise is still inflight. This is a memory leak and causes ugly errors in the console. We should ideally try to cancel our promise if it is unmounted, but of course promise cancellation isn't common, and there are [some other issues that Svelte doesn't clean up](https://github.com/svelte-society/recipes-mvp/issues/6):
+
+- its reactive assignments and reactive statements with stores are disabled
+- its await blocks do what you'd expect and don't render their content (but I think there's a bug with pending content being rendered?)
+- its events are still triggered
+- it can still call callbacks
+
+It can be simpler to keep promises out of components, and only put async logic in [Svelte Stores](https://svelte.dev/docs#svelte_store), where you read values and trigger custom methods to update values. 
+
+```js
+// https://svelte.dev/repl/483ce4b0743f41238584076baadb9fe7?version=3.20.1
+// store.js
+import { writable } from 'svelte/store';
+
+export const count = writable(0);
+export const isFetching = writable(false);
+
+export function getNewCount() {
+	isFetching.set(true)
+	return new Promise(res => setTimeout(() => {
+		res(count.set(Math.random()))
+		isFetching.set(false)
+	}, 1000))
+}
+```
+
+```html
+<script>
+import {getNewCount, count, isFetching} from './store'
+</script>
+
+<button on:click={getNewCount}>
+Click to Load Data {#if $isFetching}🌀{/if}
+</button>
+
+<pre>
+{$count}
+</pre>
+```
+
+This has the added benefit of keeping state around if the component gets remounted again with no need for a new data fetch.
+
 ### Dealing with CORS Errors in Svelte
 
 Svelte is purely a frontend framework, so it will be subject to the same CORS restrictions that any frontend framework faces. You will run into CORS issues in two ways:
@@ -503,8 +547,6 @@ You can solve both with a range of solutions from having a local API dev server 
 - https://aws.amazon.com/blogs/mobile/amplify-framework-local-mocking/
 
 If you happen to be running [a Sapper app](https://sapper.svelte.dev/), then you may take advantage of preloading data server-side in Sapper: https://sapper.svelte.dev/docs#Preloading.
-
-You now have all you need to work with Data APIs in Svelte.
 
 ### Further Links
 
