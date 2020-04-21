@@ -14,8 +14,12 @@ All examples have some variation "with Svelte" appended to them in an attempt to
 <summary>Table of Contents</summary>
 
 - [Build Setup Recipes](#build-setup-recipes)
-  - [Using Svelte Preprocessors (for SCSS, TypeScript, and Babel)](#using-svelte-preprocessors-for-scss-typescript-and-babel)
-  - [Preprocessors](#preprocessors)
+  - [Using Svelte with other technologies (e.g. PostCSS, SCSS, TypeScript, and Babel)](#using-svelte-with-other-technologies-eg-postcss-scss-typescript-and-babel)
+  - [Transpiling ES6 to ES5 for Legacy Browser (IE11) Support with Babel](#transpiling-es6-to-es5-for-legacy-browser-ie11-support-with-babel)
+  - [Using Future JS Syntax in Svelte with Babel](#using-future-js-syntax-in-svelte-with-babel)
+  - [Using TypeScript with Svelte](#using-typescript-with-svelte)
+  - [Using PostCSS/SCSS with Svelte](#using-postcssscss-with-svelte)
+  - [Writing Your Own Preprocessors](#writing-your-own-preprocessors)
   - [How to make a pre-processor that makes it possible to use PUG/Jade](#how-to-make-a-pre-processor-that-makes-it-possible-to-use-pugjade)
 - [Svelte Language Fundamentals](#svelte-language-fundamentals)
   - [Reactivity](#reactivity)
