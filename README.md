@@ -788,12 +788,11 @@ Of course, it is up to you what UX you want - you may wish to keep displaying st
 
 **Method 4: Data Stores**
 
-One small flaw with our examples so far is that Svelte will still try to update components that unmount while a promise is still inflight. This is a memory leak and causes ugly errors in the console. We should ideally try to cancel our promise if it is unmounted, but of course promise cancellation isn't common, and there are [some other issues that Svelte doesn't clean up](https://github.com/svelte-society/recipes-mvp/issues/6):
+One small flaw with our examples so far is that Svelte will still try to update components that unmount while a promise is still inflight. This is a memory leak that sometimes causes bugs and ugly errors in the console. We should ideally try to cancel our promise if it is unmounted, but of course promise cancellation isn't common. When a component unmounts, Svelte cancels its reactive subscriptions, but an unmounted component has [some other issues that Svelte doesn't clean up](https://github.com/svelte-society/recipes-mvp/issues/6):
 
-- its reactive assignments and reactive statements with stores are disabled
-- its await blocks do what you'd expect and don't render their content (but I think there's a bug with pending content being rendered?)
-- its events are still triggered
+- it can still dispatch events
 - it can still call callbacks
+- other code queued to run after a promise fulfills will still run, possibly causing unwanted side effects
 
 It can be simpler to keep promises out of components, and only put async logic in [Svelte Stores](https://svelte.dev/docs#svelte_store), where you read values and trigger custom methods to update values. 
 
