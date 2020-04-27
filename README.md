@@ -1059,6 +1059,8 @@ _to be written_
 
 # Svelte Transition Recipes
 
+https://dev.to/ekafyi/svelte-tutorials-learning-notes-transitions-2jd2
+
 [Jump back up to Table of Contents](https://github.com/svelte-society/recipes-mvp#table-of-contents)
 
 # Svelte App-Level Design Patterns
