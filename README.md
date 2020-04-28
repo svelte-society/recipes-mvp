@@ -447,7 +447,7 @@ This, however, will not:
 </script>
 
 {#each list as item}
-  <button on:click={() => item *= 2 }>{ item.n }</button>
+  <button on:click={() => item *= 2 }>{ item }</button>
 {/each}
 ```
 
