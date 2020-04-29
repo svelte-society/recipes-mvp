@@ -451,6 +451,19 @@ This, however, will not:
 {/each}
 ```
 
+The easiest workaround is to just reference the array item by index from inside the each block:
+
+```sv
+<script>
+  let list = [1, 2, 3];
+</script>
+
+{#each list as item, index}
+  <button on:click={() => list[index] *= 2 }>{ item }</button>
+{/each}
+```
+
+
 #### Variables not values
 
 Svelte only cares about which _variables_ are being reassigned, not the values to which those variables refer. If the variable you reassign is not defined at the top level, Svelte does not trigger an update, even if the value you _are_ updating updates the original variable's value as well.
