@@ -1,5 +1,9 @@
 # Svelte Component Recipes
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## Using Fetch to Consume APIs with Svelte
 
 Working with external data in Svelte is important. Here's a guide.
@@ -175,32 +179,34 @@ One small flaw with our examples so far is that Svelte will still try to update 
 - it can still call callbacks
 - other code queued to run after a promise fulfills will still run, possibly causing unwanted side effects
 
-It can be simpler to keep promises out of components, and only put async logic in [Svelte Stores](https://svelte.dev/docs#svelte_store), where you read values and trigger custom methods to update values. 
+It can be simpler to keep promises out of components, and only put async logic in [Svelte Stores](https://svelte.dev/docs#svelte_store), where you read values and trigger custom methods to update values.
 
 ```js
 // https://svelte.dev/repl/483ce4b0743f41238584076baadb9fe7?version=3.20.1
 // store.js
-import { writable } from 'svelte/store';
+import { writable } from "svelte/store";
 
 export const count = writable(0);
 export const isFetching = writable(false);
 
 export function getNewCount() {
-	isFetching.set(true)
-	return new Promise(res => setTimeout(() => {
-		res(count.set(Math.random()))
-		isFetching.set(false)
-	}, 1000))
+  isFetching.set(true);
+  return new Promise((res) =>
+    setTimeout(() => {
+      res(count.set(Math.random()));
+      isFetching.set(false);
+    }, 1000)
+  );
 }
 ```
 
 ```html
 <script>
-import {getNewCount, count, isFetching} from './store'
+  import { getNewCount, count, isFetching } from "./store";
 </script>
 
-<button on:click={getNewCount}>
-Click to Load Data {#if $isFetching}🌀{/if}
+<button on:click="{getNewCount}">
+  Click to Load Data {#if $isFetching}🌀{/if}
 </button>
 
 <pre>

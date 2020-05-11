@@ -1,5 +1,8 @@
-
 # Svelte App-Level Design Patterns
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Routing with Svelte
 
@@ -22,12 +25,12 @@ Figuring out how to authenticate with Svelte can be tricky business. The officia
 
 Your best options might be to offload session management from Svelte to some other web server that is configured to use HTTPS. In many cases, your clients will want to authenticate using a modern web browser, and most modern web browsers implement strong security regulations over how data gets transferred between a server and a client. During development, you might see this error: ["Reason: CORS header 'Access-Control-Allow-Origin' missing"](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors/CORSMissingAllowOrigin), and if you do then it may be worth a few minutes to read up on ["Dealing with CORS Errors in Svelte"](https://github.com/svelte-society/recipes-mvp#dealing-with-cors-errors-in-svelte).
 
-
 **Method 1: JSON Fetch using a POST method (same-origin cors headers)**
 
 While Svelte may not necessary require an asynchronous authentication method, your application's performance could benefit from trying to use one. It is generally accepted that `POST` methods are the way to go, since they do not append sensitive data after the request URI. In this example, we incorporate writable stores (for saving the auth server's response), reactive statements for building the data body of the POST request, and specialized Svelte tags `{#await <promise>}`, `{:then <awaited response>}`, `{:catch <some error>}` to render a different HTML tag at each stage of the authentication request.
 
 It is important to note that this example includes `preventDefault` to prevent the runtime from making an HTTP request at the instant when the form element gets created: `<form on:submit|preventDefault={submitHandler}>`.
+
 ```js
 <script>
   import { session } from './session.js';
@@ -41,7 +44,7 @@ It is important to note that this example includes `preventDefault` to prevent t
   // instead of:
   //    const AUTH_SERVER_URL = "...";
   // to set the destination using the props spread
-  
+
   const AUTH_SERVER_URL = "https://authserverurl.com/api/login";
   let email = "";
   let password = "";
@@ -66,9 +69,9 @@ It is important to note that this example includes `preventDefault` to prevent t
       referrerPolicy: 'no-referrer', // no-referrer, *client
       body: JSON.stringify(combined) // body data type must match "Content-Type" header
     });
-    
+
     // One additional option is to use:
-    // ... = await response.json(); 
+    // ... = await response.json();
     // But since we're printing out the response in an HTML element,
     // it is convenient to await the `.text()` promise.
     let text = await response.text();
@@ -80,15 +83,15 @@ It is important to note that this example includes `preventDefault` to prevent t
     return text;
   }
   function submitHandler() {
-    /* This promise needs to be awaited somewhere -- 
+    /* This promise needs to be awaited somewhere --
      * either in the HTML body via `{#await}` tags,
      * in a `<script>` tag, or in an imported `.js` module.
-     */ 
+     */
     result = authenticate();
     // Clear out the data fields
     email = "";
     password = "";
-  }    
+  }
 </script>
 <div>
   <form on:submit|preventDefault={submitHandler}>

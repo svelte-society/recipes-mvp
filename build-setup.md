@@ -1,5 +1,8 @@
-
 # Build Setup Recipes
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Using Svelte with other technologies (e.g. PostCSS, SCSS, TypeScript, and Babel)
 
@@ -311,7 +314,6 @@ and you can write SCSS/SASS in your Svelte template:
 ```
 
 The same is true for PostCSS as well, which also applies to any PostCSS plugins, like TailwindCSS.
-
 
 ## Writing Your Own Preprocessors
 

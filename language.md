@@ -1,5 +1,8 @@
-
 # Svelte Language Fundamentals
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Reactivity
 
@@ -67,7 +70,6 @@ The easiest workaround is to just reference the array item by index from inside 
   <button on:click={() => list[index] *= 2 }>{ item }</button>
 {/each}
 ```
-
 
 #### Variables not values
 

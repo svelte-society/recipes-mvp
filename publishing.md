@@ -1,5 +1,8 @@
-
 # Publishing Svelte Components/Deploying Svelte Apps
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Packaging Svelte Components for npm
 
@@ -23,7 +26,7 @@ WORKDIR /app
 
 # copy files and install dependencies
 COPY . ./
-RUN npm install 
+RUN npm install
 RUN npm run build
 
 EXPOSE 5000
@@ -49,6 +52,7 @@ docker inspect <container-id>
 ```
 
 In the output, look at the `HostConfig` for the `PortBindings` object.
+
 ```
 "Ports": {
   "5000/tcp": [

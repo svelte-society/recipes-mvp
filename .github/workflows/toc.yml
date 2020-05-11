@@ -15,6 +15,7 @@ jobs:
     steps:
       - uses: technote-space/toc-generator@v2
         with:
-          FOLDING: true
+          # FOLDING: true
+          TARGET_PATHS: *.md
           MAX_HEADER_LEVEL: 2
           COMMIT_NAME: ToC-GitHub-Action
