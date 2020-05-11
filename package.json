@@ -1,0 +1,34 @@
+{
+  "name": "recipes-mvp",
+  "version": "1.0.0",
+  "description": "MVP repo to just start collecting recipes for [Svelte Community](https://github.com/sveltejs/community). The core inspiration is https://vuejs.org/v2/cookbook/. this package.json is just for maintenance work",
+  "main": "index.js",
+  "scripts": {
+    "format": "prettier --write \"*.md\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/svelte-society/recipes-mvp.git"
+  },
+  "keywords": [
+    "svelte",
+    "sveltejs",
+    "community"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/svelte-society/recipes-mvp/issues"
+  },
+  "homepage": "https://github.com/svelte-society/recipes-mvp#readme",
+  "devDependencies": {
+    "husky": "^4.2.5",
+    "prettier": "^2.0.5",
+    "pretty-quick": "^2.0.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  }
+}
