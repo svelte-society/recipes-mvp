@@ -2,6 +2,11 @@
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Packaging Svelte Components for npm](#packaging-svelte-components-for-npm)
+- [Dockerize a Svelte App](#dockerize-a-svelte-app)
+
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Packaging Svelte Components for npm

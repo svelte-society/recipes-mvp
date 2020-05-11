@@ -1,3 +1,12 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [recipes-mvp](#recipes-mvp)
+- [Table of Contents](#table-of-contents)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # recipes-mvp
 
 MVP repo to just start collecting recipes for [Svelte Community](https://github.com/sveltejs/community). The core inspiration is https://vuejs.org/v2/cookbook/.
