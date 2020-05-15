@@ -323,7 +323,7 @@ and you can write SCSS/SASS in your Svelte template:
 </style>
 ```
 
-The same is true for PostCSS as well, which also applies to any PostCSS plugins, like TailwindCSS.
+The same is true for PostCSS as well, which also applies to any PostCSS plugins, like TailwindCSS (see [Tailwind demo here](https://github.com/tailwindcss/setup-examples/tree/master/examples/sapper)).
 
 ## Writing Your Own Preprocessors
 
