@@ -262,7 +262,7 @@ This method simply binds the generated component to an array element based on it
 </script>
 
 {#each array as item, i}
- <Child title="{item.title}" bind:this="{children[i]} />
+ <Child title="{item.title}" bind:this="{children[i]}" />
 {/each}
 ```
 
@@ -281,7 +281,7 @@ An alternative is to use an _unique_ key and bind the component to an object, ef
 </script>
 
 {#each array as item, i (id)}
- <Child title="{item.title}" bind:this="{children[id]} />
+ <Child title="{item.title}" bind:this="{children[id]}" />
 {/each}
 ```
 
