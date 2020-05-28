@@ -243,6 +243,48 @@ If you happen to be running [a Sapper app](https://sapper.svelte.dev/), then you
 - Svelte Suspense discussion: https://github.com/sveltejs/svelte/issues/1736
 - Your link here?
 
+## Getting references to Components generated in an #each block
+
+Using `bind:this` allows a component to store a reference to it's children, this can also be used when generating a series of components in an `{#each}` block.
+
+### Method 1: Using an array
+
+This method simply binds the generated component to an array element based on it's index within the loop.
+
+```html
+<script>
+  import Child from './Child.svelte'
+  const array = [
+    { id: 1, title: 'apple'}, 
+    {id: 2, title: 'banana'}
+  ]
+  const children = []
+</script>
+
+{#each array as item, i}
+ <Child title="{item.title}" bind:this="{children[i]} />
+{/each}
+```
+
+### Method 2: Using an object as a hashtable
+
+An alternative is to use an _unique_ key and bind the component to an object, effectively making a hashtable of components.
+
+```html
+<script>
+  import Child from './Child.svelte'
+  const array = [
+    { id: 1, title: 'apple'},
+    {id: 2, title: 'banana'}
+  ]
+  const children = []
+</script>
+
+{#each array as item, i (id)}
+ <Child title="{item.title}" bind:this="{children[id]} />
+{/each}
+```
+
 ## Form Validation with Svelte
 
 _to be written_
