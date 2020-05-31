@@ -31,7 +31,7 @@ First, create a folder for all of the icons. Be sure to name them according to s
 - **components/icons/Pencil.svelte**
 - **components/icons/PencilAlt.svelte**
 
-For more a more detailed example of the entire setup, check out the example repo: https://github.com/babycourageous/svelte-svg-icons-recipe/
+For more a more detailed example of the entire setup, check out the example repo: https://github.com/babycourageous/svelte-recipes-svg-icons-demo or the Demo Site (https://svelte-recipes-svg-icons-demo.netlify.app/)
 
 The next step is to create a base icon component (`Icon.svelte`). Start with the markup which will make use of a `slot`. This will allow the `svg` parent to accept children (which will be the paths of the icon).
 
