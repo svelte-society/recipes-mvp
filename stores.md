@@ -156,7 +156,33 @@ Since we have written custom `set` methods, we are also free to bind to each ind
 
 See it in action below. The following example uses the `synced` store to convert between Celsius and Fahrenheit in both directions.
 
-_the stuff i actually wrote ends here, this is a fun example that could be included though_
+```
+<script>
+  import {synced} from './linkable'
+
+  export let initialCelsius = null
+  export let initialFahrenheit = null
+
+  const [C, F] = synced(
+    (C) => (C * 9/5) + 32,
+    (F) => (F - 32) * 5/9
+  );
+
+  if (initialCelsius && initialFahrenheit) {
+    console.error('You can only set one inital temperature. Please set initialCelsius or initialFahrenheit but not both.')
+  } else if (initialCelsius) {
+    $C = initialCelsius
+  } else if (initialFahrenheit) {
+    $F = initialFahrenheit
+  } else {
+    $C = 0
+  }
+</script>
+
+<input bind:value={$C} type=number /> ºC = <input bind:value={$F} type=number /> ºF
+```
+
+Play around with it in the [REPL](https://svelte.dev/repl/abbc56bdbd6e45c8ad5cd6f75108c6d8?version=3).
 
 ### a custom implementation of the builtin store
 
