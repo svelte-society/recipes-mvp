@@ -58,7 +58,7 @@ docker inspect <container-id>
 
 In the output, look at the `HostConfig` for the `PortBindings` object.
 
-```
+```json
 "Ports": {
   "5000/tcp": [
     {
@@ -71,7 +71,7 @@ In the output, look at the `HostConfig` for the `PortBindings` object.
 
 Update your `npm start` command to serve your assets on the host IP.
 
-```
+```json
 "scripts": {
   "build": "rollup -c",
   "dev": "rollup -c -w",

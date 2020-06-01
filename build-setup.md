@@ -108,7 +108,7 @@ The other, less common but still handy usecase for Babel with Svelte is transpil
 Example usage:
 </summary>
 
-```html
+```svelte
 <script>
   let foo = {
     bar: {
@@ -236,7 +236,7 @@ export default {
 
 and then you can write your Svelte components with TypeScript:
 
-```html
+```svelte
 <script lang="typescript">
   // Compatible with Svelte v3...
   export const hello: string = 'world';
@@ -314,7 +314,7 @@ export default {
 
 and you can write SCSS/SASS in your Svelte template:
 
-```html
+```svelte
 <style lang="scss">
   $color: red;
   div {
