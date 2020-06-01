@@ -37,7 +37,7 @@ While Svelte may not necessary require an asynchronous authentication method, yo
 
 It is important to note that this example includes `preventDefault` to prevent the runtime from making an HTTP request at the instant when the form element gets created: `<form on:submit|preventDefault={submitHandler}>`.
 
-```js
+```svelte
 <script>
   import { session } from './session.js';
   /* session.js:

@@ -20,7 +20,7 @@ The simplest way to make your Svelte components reactive is by using an assignme
 
 The following works as expected and update the dom:
 
-```sv
+```svelte
 <script>
   let num = 0;
 
@@ -41,7 +41,7 @@ The only exception to the top-level variable rule is when you are inside an `eac
 
 The following example causes the array and, subsequently, the DOM to be updated:
 
-```sv
+```svelte
 <script>
   let list = [{ n: 1 }, { n: 2 }, { n: 3 }];
 </script>
@@ -53,7 +53,7 @@ The following example causes the array and, subsequently, the DOM to be updated:
 
 This, however, will not:
 
-```sv
+```svelte
 <script>
   let list = [1, 2, 3];
 </script>
@@ -65,7 +65,7 @@ This, however, will not:
 
 The easiest workaround is to just reference the array item by index from inside the each block:
 
-```sv
+```svelte
 <script>
   let list = [1, 2, 3];
 </script>
@@ -81,7 +81,7 @@ Svelte only cares about which _variables_ are being reassigned, not the values t
 
 This is the sort of problem you may run into when dealing with objects. Since objects are passed by reference and not value, you can refer to the same value in many different variables. Let's look at an example:
 
-```sv
+```svelte
 <script>
   let obj = {
     num: 0
@@ -103,7 +103,7 @@ In this example, when we reassign `o.num` we are updating the value assigned to 
 
 Another situation that can sometimes cause unexpected results is when you reassign a function's parameter (as above), and that parameter has the same _name_ as a top-level variable.
 
-```sv
+```svelte
 <script>
   let obj = {
     num: 0
@@ -126,7 +126,7 @@ Reassigning function parameters in this way is the same as reassigning a variabl
 
 In addition to the assignment-based reactivity system, Svelte also has special syntax to define code that should rerun when its dependencies change using labeled statements - `$:`.
 
-```sv
+```svelte
 <script>
   let n = 0;
 
@@ -138,7 +138,7 @@ In addition to the assignment-based reactivity system, Svelte also has special s
 
 Whenever Svelte sees a reactive declaration, it makes sure to execute any reactive statements that depend on one another in the correct order and only when their direct dependencies have changed. A 'direct dependency' is a variable that is referenced inside the reactive declaration itself. References to variables inside functions that a reactive declaration _calls_ are not considered dependencies.
 
-```sv
+```svelte
 <script>
   let n = 0;
 

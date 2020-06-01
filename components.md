@@ -23,7 +23,7 @@ _Maintainers of this Recipe: [swyx](https://twitter.com/swyx)_
 
 We can declare a `data` variable and use the `onMount` lifecycle to fetch on mount and display data in our component:
 
-```html
+```svelte
 <!-- https://svelte.dev/repl/99c18a89f05d4682baa83cb673135f05?version=3.20.1 -->
 <script>
   import { onMount } from "svelte";
@@ -48,7 +48,7 @@ Since it is very common to update your app based on the status of your data fetc
 
 This example is exactly equal to Method 1 above:
 
-```html
+```svelte
 <!-- https://svelte.dev/repl/977486a651a34eb5bd9167f989ae3e71?version=3.20.1 -->
 <script>
   let promise = fetch(
@@ -86,7 +86,7 @@ One flaw with the above approach is that it does not offer a way for the user to
 
 If we don't want to immediately load data on component mount, we can wait for user interaction instead:
 
-```html
+```svelte
 <!-- https://svelte.dev/repl/2a8db7627c4744008203ecf12806eb1f?version=3.20.1 -->
 <script>
   let data;
@@ -113,7 +113,7 @@ However, there are some problems with this approach. You may still need to decla
 
 It would be better to make all these commonplace UI idioms declarative. Await blocks to the rescue again:
 
-```html
+```svelte
 <!-- https://svelte.dev/repl/98ec1a9a45af4d75ac5bbcb1b5bcb160?version=3.20.1 -->
 <script>
   let promise;
@@ -147,7 +147,7 @@ The trick here is we can simply reassign the `promise` to trigger a refetch, whi
 
 Of course, it is up to you what UX you want - you may wish to keep displaying stale data and merely display a loading indicator instead while fetching the new data. Here's a possible solution using a second promise to execute the data fetching while the main promise stays onscreen:
 
-```html
+```svelte
 <!-- https://svelte.dev/repl/21e932515ab24a6fb7ab6d411cce2799?version=3.20.1 -->
 <script>
   let promise1, promise2;
@@ -207,7 +207,7 @@ export function getNewCount() {
 }
 ```
 
-```html
+```svelte
 <script>
   import { getNewCount, count, isFetching } from "./store";
 </script>
@@ -252,7 +252,7 @@ Using `bind:this` allows a component to store a reference to it's children, this
 
 This method simply binds the generated component to an array element based on it's index within the loop.
 
-```html
+```svelte
 <script>
   import Child from "./Child.svelte";
   const array = [
@@ -271,7 +271,7 @@ This method simply binds the generated component to an array element based on it
 
 An alternative is to use an _unique_ key and bind the component to an object, effectively making a hashtable of components.
 
-```html
+```svelte
 <script>
   import Child from "./Child.svelte";
   const array = [
