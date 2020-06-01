@@ -2,6 +2,7 @@
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 **Table of Contents**
 
 - [Stores](#stores)
@@ -124,8 +125,8 @@ function a_set($a) {
 
 // called when store_b.set is called or its binding reruns
 function b_set($b) {
-  b.set(b_to_a($b));
-  a.set($b);
+  a.set(b_to_a($b));
+  b.set($b);
 }
 ```
 
@@ -148,14 +149,40 @@ const [a, a_plus_five] = synced(
   (b) => a - 5
 );
 
-$c = 0; // set an initial value
+$a = 0; // set an initial value
 ```
 
 Since we have written custom `set` methods, we are also free to bind to each individual store. When one store updates, the other also updates after the provided function is applied to the value.
 
 See it in action below. The following example uses the `synced` store to convert between Celsius and Fahrenheit in both directions.
 
-_the stuff i actually wrote ends here, this is a fun example that could be included though_
+```
+<script>
+  import {synced} from './linkable'
+
+  export let initialCelsius = null
+  export let initialFahrenheit = null
+
+  const [C, F] = synced(
+    (C) => (C * 9/5) + 32,
+    (F) => (F - 32) * 5/9
+  );
+
+  if (initialCelsius && initialFahrenheit) {
+    console.error('You can only set one inital temperature. Please set initialCelsius or initialFahrenheit but not both.')
+  } else if (initialCelsius) {
+    $C = initialCelsius
+  } else if (initialFahrenheit) {
+    $F = initialFahrenheit
+  } else {
+    $C = 0
+  }
+</script>
+
+<input bind:value={$C} type=number /> ºC = <input bind:value={$F} type=number /> ºF
+```
+
+Play around with it in the [REPL](https://svelte.dev/repl/abbc56bdbd6e45c8ad5cd6f75108c6d8?version=3).
 
 ### a custom implementation of the builtin store
 
