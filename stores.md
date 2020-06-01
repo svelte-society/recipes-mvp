@@ -2,6 +2,7 @@
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 **Table of Contents**
 
 - [Stores](#stores)
@@ -148,7 +149,7 @@ const [a, a_plus_five] = synced(
   (b) => a - 5
 );
 
-$c = 0; // set an initial value
+$a = 0; // set an initial value
 ```
 
 Since we have written custom `set` methods, we are also free to bind to each individual store. When one store updates, the other also updates after the provided function is applied to the value.
