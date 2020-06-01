@@ -125,8 +125,8 @@ function a_set($a) {
 
 // called when store_b.set is called or its binding reruns
 function b_set($b) {
-  b.set(b_to_a($b));
-  a.set($b);
+  a.set(b_to_a($b));
+  b.set($b);
 }
 ```
 
