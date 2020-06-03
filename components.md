@@ -8,6 +8,7 @@
 - [Getting references to Components generated in an #each block](#getting-references-to-components-generated-in-an-each-block)
 - [Form Validation with Svelte](#form-validation-with-svelte)
 - [Client-Side Storage with Svelte](#client-side-storage-with-svelte)
+- [Passing attributes to component DOM element](#passing-attributes-to-component-dom-element)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -284,6 +285,22 @@ An alternative is to use an _unique_ key and bind the component to an object, ef
 {#each array as item, i (id)}
 <Child title="{item.title}" bind:this="{children[id]}" />
 {/each}
+```
+
+## Passing attributes to component DOM element
+
+When you want to pass any attributes like `class` or `style` to your component wrapper DOM element (instead of the slot)
+
+```svelte
+// https://svelte.dev/repl/24139d8599d348b9bcad5c0a1f471230?version=3.23.0
+<!-- Component.svelte -->
+<script>
+  $: elProps = { ...$$restProps, props: undefined }
+</script>
+<li {...elProps} ><slot></slot></li>
+
+<!-- App.svelte -->
+<Component class="li-item-class">{name}</Component>
 ```
 
 ## Form Validation with Svelte
