@@ -390,31 +390,31 @@ For cases when you need more than localized component state, Svelte offers _stor
 
 ```js
 // localStorageStore.js
-import { writable, get } from 'svelte/store'
+import { writable, get } from "svelte/store";
 
 export function localStorageWritable(key, initialValue) {
   // retrieve existing Local Storage value if it exists
   if (ls.getItem(key)) {
-    initialValue = JSON.parse(ls.getItem(key))
+    initialValue = JSON.parse(ls.getItem(key));
   }
 
   // store the initial state in Local Storage
-  ls.setItem(key, JSON.stringify(initialValue))
+  ls.setItem(key, JSON.stringify(initialValue));
   // create the store
-  const store = writable(initialValue)
+  const store = writable(initialValue);
 
   // return svelte writable interface
   return {
     set(newValue) {
-      ls.setItem(key, JSON.stringify(newValue))
-      store.set(newValue)
+      ls.setItem(key, JSON.stringify(newValue));
+      store.set(newValue);
     },
     update(cb) {
-      const currentState = get(store)
-      this.set(cb(currentState))
+      const currentState = get(store);
+      this.set(cb(currentState));
     },
     subscribe: store.subscribe,
-  }
+  };
 }
 ```
 
