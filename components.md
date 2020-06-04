@@ -6,9 +6,9 @@
 
 - [Using Fetch to Consume APIs with Svelte](#using-fetch-to-consume-apis-with-svelte)
 - [Getting references to Components generated in an #each block](#getting-references-to-components-generated-in-an-each-block)
+- [Passing attributes to component DOM element](#passing-attributes-to-component-dom-element)
 - [Form Validation with Svelte](#form-validation-with-svelte)
 - [Client-Side Storage with Svelte](#client-side-storage-with-svelte)
-- [Passing attributes to component DOM element](#passing-attributes-to-component-dom-element)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
