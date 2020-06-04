@@ -293,6 +293,129 @@ _to be written_
 
 ## Client-Side Storage with Svelte
 
-_to be written_
+Persistant state using client-side storage enables users to access data even when they are offline. These recipes are ways to persist state in Svelte using Local Storage.
+
+Local Storage uses a key/value system for storing data. It is limited to storing only simple values but complex data can be stored if you encode and decode the values with JSON. In general, Local Storage is appropriate for smaller sets of data you would want to persist - things like user preferences or form data. Larger data with more complex storage needs would be better suited for other means.
+
+### Basic Implementation
+
+```svelte
+<script>
+  let value = localStorage.getItem("name") || "";
+
+  function saveToLocal() {
+    localStorage.setItem("name", value);
+  }
+</script>
+
+<div>
+  <h1>Svelte with Basic Local Storage</h1>
+  <input type="text" bind:value />
+  <button on:click="{saveToLocal}">Save to Local</button>
+  <p>{value}</p>
+</div>
+```
+
+Type something in the `input` field and hit the `button`. When you refresh the page, voila the data has persisted and is used as the default value for the `value` prop.
+
+### More Complex Values
+
+Since Local Storage only works with simple values, more complex values like objects or arrays must be serialized and deserialized with JSON in order to store them in Local Storage.
+
+```svelte
+<script>
+  import { onMount } from "svelte";
+
+  let todos = [];
+  let newTodo;
+
+  function addTodo() {
+    // ensure they actually typed something
+    if (!newTodo) {
+      return;
+    }
+
+    todos = [...todos, newTodo];
+    newTodo = "";
+    saveTodosToLocal();
+  }
+
+  function removeTodo(index) {
+    const length = todos.length;
+    todos = [...todos.slice(0, index), ...todos.slice(index + 1, length)];
+    console.log(todos);
+    saveTodosToLocal();
+  }
+
+  function saveTodosToLocal() {
+    const parsed = JSON.stringify(todos);
+    localStorage.setItem("todos", parsed);
+  }
+
+  onMount(() => {
+    if (localStorage.getItem("todos")) {
+      try {
+        todos = JSON.parse(localStorage.getItem("todos"));
+      } catch (e) {
+        localStorage.removeItem("todos");
+      }
+    }
+  });
+</script>
+
+<div>
+  <h2>Todo List</h2>
+  <ul>
+    {#each todos as todo, i}
+    <li>
+      <span>{todo}</span>
+      <button on:click={() => removeTodo(i)}>Remove Todo</button>
+    </li>
+    {/each}
+  </ul>
+  <p>
+    <input type="text" bind:value={newTodo} />
+    <button on:click={addTodo}>Add Todo</button>
+  </p>
+</div>
+```
+
+Here the data is initialized as an empty array and then `onMount` is used to get any prior data stored in Local Storage. Since the data has to be deserialized first this approach is used instead of the previous version where the data was initialized with any existing Local Storage result.
+
+The rest is pretty standard Svelte Todo app business.
+
+### A Persistent Svelte Store
+
+For cases when you need more than localized component state, Svelte offers _stores_. Svelte stores, however, do not persist data. We're going wrap the svelte `writable` store implementation with some Local Storage functionality.
+
+```js
+// localStorageStore.js
+import { writable, get } from 'svelte/store'
+
+export function localStorageWritable(key, initialValue) {
+  // retrieve existing Local Storage value if it exists
+  if (ls.getItem(key)) {
+    initialValue = JSON.parse(ls.getItem(key))
+  }
+
+  // store the initial state in Local Storage
+  ls.setItem(key, JSON.stringify(initialValue))
+  // create the store
+  const store = writable(initialValue)
+
+  // return svelte writable interface
+  return {
+    set(newValue) {
+      ls.setItem(key, JSON.stringify(newValue))
+      store.set(newValue)
+    },
+    update(cb) {
+      const currentState = get(store)
+      this.set(cb(currentState))
+    },
+    subscribe: store.subscribe,
+  }
+}
+```
 
 [Back to Table of Contents](https://github.com/svelte-society/recipes-mvp#table-of-contents)
