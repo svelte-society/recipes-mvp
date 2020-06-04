@@ -289,10 +289,9 @@ An alternative is to use an _unique_ key and bind the component to an object, ef
 
 ## Passing attributes to component DOM element
 
-When you want to pass any attributes like `class` or `style` to your component wrapper DOM element (instead of the slot)
+When you want to "forward" any attributes like `class` or `style` to your component wrapper DOM element (instead of declaring variables), use `$$restProps`:
 
 ```svelte
-// https://svelte.dev/repl/24139d8599d348b9bcad5c0a1f471230?version=3.23.0
 <!-- Component.svelte -->
 <script>
   $: elProps = { ...$$restProps, props: undefined }
@@ -302,6 +301,10 @@ When you want to pass any attributes like `class` or `style` to your component w
 <!-- App.svelte -->
 <Component class="li-item-class">{name}</Component>
 ```
+[Svelte Playground here](https://svelte.dev/repl/24139d8599d348b9bcad5c0a1f471230?version=3.23.0). See [relevant part of docs](https://svelte.dev/docs#Attributes_and_props) for more.
+
+This is helpful where, for example, [using MDSveX](https://github.com/pngwn/MDsveX/), you want to create a bunch of Svelte wrappers to DOM elements like `H1`, `P`, and `A` instead of the normal `h1`, `p`, and `a`.
+
 
 ## Form Validation with Svelte
 
