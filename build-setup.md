@@ -246,6 +246,10 @@ and then you can write your Svelte components with TypeScript:
 </template>
 ```
 
+More information from community blogposts:
+
+- https://codechips.me/how-to-use-typescript-with-svelte/
+
 ## Using PostCSS/SCSS with Svelte
 
 **Option 1 - Write your own**
