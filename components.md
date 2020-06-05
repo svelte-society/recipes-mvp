@@ -293,10 +293,7 @@ When you want to "forward" any attributes like `class` or `style` to your compon
 
 ```svelte
 <!-- Component.svelte -->
-<script>
-  $: elProps = { ...$$restProps, props: undefined }
-</script>
-<li {...elProps} ><slot></slot></li>
+<li {...$$restProps} ><slot></slot></li>
 
 <!-- App.svelte -->
 <Component class="li-item-class">{name}</Component>
@@ -305,6 +302,7 @@ When you want to "forward" any attributes like `class` or `style` to your compon
 
 This is helpful where, for example, [using MDSveX](https://github.com/pngwn/MDsveX/), you want to create a bunch of Svelte wrappers to DOM elements like `H1`, `P`, and `A` instead of the normal `h1`, `p`, and `a`.
 
+Note that when passing a class to component, you may need to set it to global `:global(.title){...}`
 
 ## Form Validation with Svelte
 
