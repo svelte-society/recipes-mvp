@@ -39,6 +39,8 @@ Svelte can see that there is an assignment to a top-level variable and knows to 
 
 The only exception to the top-level variable rule is when you are inside an `each` block. Any assignments to variables inside an `each` block trigger an update. Only assignments to array items that are objects or arrays result in the array itself updating. If the array items are primitives, the change is not traced back to the original array. This is because Svelte only reassigns the actual array items and primitives are passed by value in javascript, not by reference.
 
+> From Svelte version 3.23.1 onwards this issue no longer applies. That means that you can assign to array items primitives and the changes will be relfected in the original array.
+
 The following example causes the array and, subsequently, the DOM to be updated:
 
 ```svelte
