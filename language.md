@@ -2,6 +2,7 @@
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 **Table of Contents**
 
 - [Reactivity](#reactivity)
@@ -36,6 +37,8 @@ The following works as expected and update the dom:
 Svelte can see that there is an assignment to a top-level variable and knows to rerender after the `num` variable is modified.
 
 #### `each` blocks
+
+> From **Svelte 3.23.1** onwards the following issue no longer applies. You can now assign to array item primitives and the changes will be reflected in the original array. See this [REPL](https://svelte.dev/repl/bc170b644f554eb29374138167dea4f0?version=3.23.1) running on **Svelte 3.23.1**, where the issue has been fixed. And this [REPL](https://svelte.dev/repl/bc170b644f554eb29374138167dea4f0?version=3.23.0) running on **Svelte 3.23.0** where the issue still applies. What follows is for archival purposes for anyone on **Svelte 3.23.0** and below. For further context see Svelte issue [4744](https://github.com/sveltejs/svelte/issues/4744).
 
 The only exception to the top-level variable rule is when you are inside an `each` block. Any assignments to variables inside an `each` block trigger an update. Only assignments to array items that are objects or arrays result in the array itself updating. If the array items are primitives, the change is not traced back to the original array. This is because Svelte only reassigns the actual array items and primitives are passed by value in javascript, not by reference.
 
