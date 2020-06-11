@@ -1,5 +1,6 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 **Table of Contents**
 
 - [recipes-mvp](#recipes-mvp)
@@ -29,6 +30,8 @@ All examples have some variation "with Svelte" appended to them in an attempt to
   - [Reactivity](/language.md#reactivity)
 - [Svelte Component Recipes](/components.md#svelte-component-recipes)
   - [Using Fetch to Consume APIs with Svelte](/components.md#using-fetch-to-consume-apis-with-svelte)
+  - [Getting references to Components generated in an #each block](#getting-references-to-components-generated-in-an-each-block)
+  - [Passing attributes to component DOM element](#passing-attributes-to-component-dom-element)
   - [Form Validation with Svelte](/components.md#form-validation-with-svelte)
   - [Client-Side Storage with Svelte](/components.md#client-side-storage-with-svelte)
 - [Svelte Store Recipes](/stores.md#svelte-store-recipes)
