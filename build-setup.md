@@ -457,6 +457,7 @@ const scriptRegex = /<!--[^]*?-->|<script(\s[^]*?)?>([^]*?)<\/script>/gi;
     markup: ({ content }) => {
       let code = content.replace(styleRegex, "").replace(scriptRegex, "");
       code = pug.render(code);
+      // TODO: if still want CSS/JS, still have to append the style/script tags BACK onto `code` for svelte to pick them up
       return { code };
     },
   });
