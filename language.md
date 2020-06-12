@@ -242,3 +242,27 @@ $: some_func(one);
 The reactive declaration in this example reruns _only_ when `one` changes, we have hidden the reference to `two` inside a function because Svelte does not look inside of referenced functions to track dependencies.
 
 [Back to Table of Contents](https://github.com/svelte-society/recipes-mvp#table-of-contents)
+
+
+## "Scoped Global" CSS
+
+Sometimes you don't use templates. If you generate html via `{@html}`, you might want to style it, however Svelte won't let you write CSS that doesn't exist in the templates. You might feel forced to use `:global()` to make the CSS work, but that would leak it out to the rest of your app. So instead you could try this trick:
+
+```svelte
+<div>
+  <Paragraph />
+  <Paragraph />
+  <Paragraph />
+</div>
+<style>
+  div :global(p + p) {
+    margin-top: 1rem;
+  }
+</style>
+```
+
+Now that `p` styling will be output by Svelte, AND it won't leak out to the rest of your app.
+
+
+
+[Back to Table of Contents](https://github.com/svelte-society/recipes-mvp#table-of-contents)
