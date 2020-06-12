@@ -267,3 +267,59 @@ Now that `p` styling will be output by Svelte, AND it won't leak out to the rest
 
 
 [Back to Table of Contents](https://github.com/svelte-society/recipes-mvp#table-of-contents)
+
+
+## Passing Values from JS to CSS Variables
+
+You can easily read in CSS media query values into JS with [`window.matchMedia`](https://developer.mozilla.org/en/docs/Web/API/Window/matchMedia). However, sometimes you want to pass information from JS to CSS variables, or have CSS Variables read into JS.
+
+Unfortunately there is nothing native to Svelte that you can use to do that, but you can write a custom action to do this. This is already available with [svelte-css-vars](https://github.com/kaisermann/svelte-css-vars).
+
+```svelte
+<!-- App.svelte -->
+<script>
+  import Circle from './Circle.svelte';
+</script>
+
+<Circle size="80x80" bg="url(https://placekitten.com/80/80) center" />
+
+<Circle
+  size={120}
+  bg="radial-gradient(circle, #051937, #004d7a, #008793, #00bf72, #a8eb12) " />
+
+<Circle
+  size={180}
+  bg="linear-gradient(45deg, #EE617D 25%, #3D6F8E 25%, #3D6F8E 50%, #EE617D 50%,
+  #EE617D 75%, #3D6F8E 75%, #3D6F8E 100%) center / 100% 20px" />
+
+<Circle size="600x200" bg="url(https://placekitten.com/250/200) center" />
+
+<!-- Circle.svelte -->
+<script>
+  import cssVars from 'svelte-css-vars';
+
+  export let bg = 'black';
+  export let size = '50x50';
+
+  $: [width, height = width] = size.toString().split(/[x|\/]/);
+  $: styleVars = {
+    width: `${width}px`,
+    height: `${height}px`,
+    bg,
+  };
+</script>
+
+<style>
+  div {
+		display: inline-block;
+    width: var(--width);
+    height: var(--height);
+    background: var(--bg);
+    border-radius: 50%;
+  }
+</style>
+
+<div use:cssVars={styleVars} />
+```
+
+[Back to Table of Contents](https://github.com/svelte-society/recipes-mvp#table-of-contents)
