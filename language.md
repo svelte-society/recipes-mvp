@@ -6,6 +6,7 @@
 
 - [Reactivity](#reactivity)
 - ["Scoped Global" CSS](#scoped-global-css)
+- [Passing Values from JS to CSS Variables](#passing-values-from-js-to-css-variables)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
