@@ -15,6 +15,14 @@ All examples have some variation "with Svelte" appended to them in an attempt to
 
 > NOTE: This is a new project! What you see below is an evolving work in progress. Please see [Project Goals](https://github.com/svelte-society/recipes-mvp/issues/9) for more. We actively need contributions of ideas and content!
 
+Newcomers to Svelte should:
+
+1. [go thru the Svelte tutorial](https://svelte.dev/tutorial/basics) (30 mins)
+2. [read thru the Svelte docs](https://svelte.dev/docs) (30 mins)
+3. or [go thru the Svelte workshop](https://svelte-workshop.netlify.app/) (3 hrs)
+
+First!
+
 # Table of Contents
 
 - [Build Setup Recipes](/build-setup.md#build-setup-recipes)
