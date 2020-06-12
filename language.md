@@ -5,6 +5,7 @@
 **Table of Contents**
 
 - [Reactivity](#reactivity)
+- ["Scoped Global" CSS](#scoped-global-css)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
