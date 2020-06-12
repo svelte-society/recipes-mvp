@@ -247,7 +247,7 @@ The reactive declaration in this example reruns _only_ when `one` changes, we ha
 
 ## "Scoped Global" CSS
 
-Sometimes you don't use templates. If you generate html via `{@html}`, you might want to style it, however Svelte won't let you write CSS that doesn't exist in the templates. You might feel forced to use `:global()` to make the CSS work, but that would leak it out to the rest of your app. So instead you could try this trick:
+Sometimes your template code doesn't match your CSS. If you generate html via `{@html}` or have some unstyled elements inside child components, you might want to style it, however Svelte won't let you write CSS that doesn't exist in the templates. You might feel forced to use `:global()` to make the CSS work, but that would leak it out to the rest of your app. So instead you could try this trick:
 
 ```svelte
 <div>
