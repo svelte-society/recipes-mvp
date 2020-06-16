@@ -2,10 +2,10 @@
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
 **Table of Contents**
 
 - [Reactivity](#reactivity)
+- [Looping](#looping)
 - ["Scoped Global" CSS](#scoped-global-css)
 - [Passing Values from JS to CSS Variables](#passing-values-from-js-to-css-variables)
 
