@@ -341,7 +341,7 @@ To use `{#each}` with generator function, you can use spread operator `[...value
 {/each}
 ```
 
-#### Binding to spreaded item
+### Binding to spreaded item
 
 Once you spread a Map, Set, Generator, or any Iterable, you are creating a new array, and therefore binding (`bind:`) with the item may not work anymore.
 
