@@ -35,6 +35,8 @@ First!
   - [How to make a pre-processor that makes it possible to use PUG/Jade](/build-setup.md#how-to-make-a-pre-processor-that-makes-it-possible-to-use-pugjade)
 - [Svelte Language Fundamentals](/language.md#svelte-language-fundamentals)
   - [Reactivity](/language.md#reactivity)
+  - ["Scoped Global" CSS](/language.md#scoped-global-css)
+  - [Passing Values from JS to CSS Variables](/language.md#passing-values-from-js-to-css-variables)
 - [Svelte Component Recipes](/components.md#svelte-component-recipes)
   - [Using Fetch to Consume APIs with Svelte](/components.md#using-fetch-to-consume-apis-with-svelte)
   - [Getting references to Components generated in an #each block](#getting-references-to-components-generated-in-an-each-block)
