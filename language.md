@@ -2,6 +2,7 @@
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 **Table of Contents**
 
 - [Reactivity](#reactivity)
@@ -399,7 +400,40 @@ Now that `p` styling will be output by Svelte, AND it won't leak out to the rest
 
 You can easily read in CSS media query values into JS with [`window.matchMedia`](https://developer.mozilla.org/en/docs/Web/API/Window/matchMedia). However, sometimes you want to pass information from JS to CSS variables, or have CSS Variables read into JS.
 
-Unfortunately there is nothing native to Svelte that you can use to do that, but you can write a custom action to do this. This is already available with [svelte-css-vars](https://github.com/kaisermann/svelte-css-vars).
+To set CSS Variables on an element, you can use the `style` attribute.
+
+```svelte
+<!-- App.svelte -->
+<script>
+  import Child from './Child.svelte';
+  let backgroundColor = 'blue';
+  export let width = 30;
+  export let height = 30;
+</script>
+<label>Color <input type="color" bind:value={backgroundColor} /></label>
+<label>Width <input type="range" bind:value={width} /></label>
+<label>Height<input type="range" bind:value={height} /></label>
+
+<div style="
+	--backgroundColor: {backgroundColor};
+	--width: {width}px;
+	--height: {height}px;
+">
+  <Child />
+</div>
+
+<!-- Child.svelte -->
+<style>
+  div {
+    background-color: var(--backgroundColor);
+		height: var(--height);
+		width: var(--width);
+  }
+</style>
+<div />
+```
+
+Alternatively, if you can have a custom action to do this. This is already available with [svelte-css-vars](https://github.com/kaisermann/svelte-css-vars).
 
 ```svelte
 <!-- App.svelte -->
