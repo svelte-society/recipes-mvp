@@ -433,7 +433,7 @@ To set CSS Variables on an element, you can use the `style` attribute.
 <div />
 ```
 
-Alternatively, if you can have a custom action to do this. This is already available with [svelte-css-vars](https://github.com/kaisermann/svelte-css-vars).
+Alternatively, you can have a custom action to do this. This is already available with [svelte-css-vars](https://github.com/kaisermann/svelte-css-vars).
 
 ```svelte
 <!-- App.svelte -->
