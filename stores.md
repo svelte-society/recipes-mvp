@@ -155,7 +155,7 @@ Since we have written custom `set` methods, we are also free to bind to each ind
 
 See it in action below. The following example uses the `synced` store to convert between Celsius and Fahrenheit in both directions.
 
-```
+```html
 <script>
   import {synced} from './linkable'
 

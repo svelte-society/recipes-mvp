@@ -15,6 +15,14 @@ All examples have some variation "with Svelte" appended to them in an attempt to
 
 > NOTE: This is a new project! What you see below is an evolving work in progress. Please see [Project Goals](https://github.com/svelte-society/recipes-mvp/issues/9) for more. We actively need contributions of ideas and content!
 
+Newcomers to Svelte should:
+
+1. [go thru the Svelte tutorial](https://svelte.dev/tutorial/basics) (30 mins)
+2. [read thru the Svelte docs](https://svelte.dev/docs) (30 mins)
+3. or [go thru the Svelte workshop](https://svelte-workshop.netlify.app/) (3 hrs)
+
+First!
+
 # Table of Contents
 
 - [Build Setup Recipes](/build-setup.md#build-setup-recipes)
@@ -27,8 +35,12 @@ All examples have some variation "with Svelte" appended to them in an attempt to
   - [How to make a pre-processor that makes it possible to use PUG/Jade](/build-setup.md#how-to-make-a-pre-processor-that-makes-it-possible-to-use-pugjade)
 - [Svelte Language Fundamentals](/language.md#svelte-language-fundamentals)
   - [Reactivity](/language.md#reactivity)
+  - ["Scoped Global" CSS](/language.md#scoped-global-css)
+  - [Passing Values from JS to CSS Variables](/language.md#passing-values-from-js-to-css-variables)
 - [Svelte Component Recipes](/components.md#svelte-component-recipes)
   - [Using Fetch to Consume APIs with Svelte](/components.md#using-fetch-to-consume-apis-with-svelte)
+  - [Getting references to Components generated in an #each block](#getting-references-to-components-generated-in-an-each-block)
+  - [Passing attributes to component DOM element](#passing-attributes-to-component-dom-element)
   - [Form Validation with Svelte](/components.md#form-validation-with-svelte)
   - [Client-Side Storage with Svelte](/components.md#client-side-storage-with-svelte)
 - [Svelte Store Recipes](/stores.md#svelte-store-recipes)

@@ -5,6 +5,9 @@
 **Table of Contents**
 
 - [Reactivity](#reactivity)
+- [Looping](#looping)
+- ["Scoped Global" CSS](#scoped-global-css)
+- [Passing Values from JS to CSS Variables](#passing-values-from-js-to-css-variables)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -36,6 +39,8 @@ The following works as expected and update the dom:
 Svelte can see that there is an assignment to a top-level variable and knows to rerender after the `num` variable is modified.
 
 #### `each` blocks
+
+> From **Svelte 3.23.1** onwards the following issue no longer applies. You can now assign to array item primitives and the changes will be reflected in the original array. See this [REPL](https://svelte.dev/repl/bc170b644f554eb29374138167dea4f0?version=3.23.1) running on **Svelte 3.23.1**, where the issue has been fixed. And this [REPL](https://svelte.dev/repl/bc170b644f554eb29374138167dea4f0?version=3.23.0) running on **Svelte 3.23.0** where the issue still applies. What follows is for archival purposes for anyone on **Svelte 3.23.0** and below. For further context see Svelte issue [4744](https://github.com/sveltejs/svelte/issues/4744).
 
 The only exception to the top-level variable rule is when you are inside an `each` block. Any assignments to variables inside an `each` block trigger an update. Only assignments to array items that are objects or arrays result in the array itself updating. If the array items are primitives, the change is not traced back to the original array. This is because Svelte only reassigns the actual array items and primitives are passed by value in javascript, not by reference.
 
@@ -238,5 +243,242 @@ $: some_func(one);
 ```
 
 The reactive declaration in this example reruns _only_ when `one` changes, we have hidden the reference to `two` inside a function because Svelte does not look inside of referenced functions to track dependencies.
+
+[Back to Table of Contents](https://github.com/svelte-society/recipes-mvp#table-of-contents)
+
+## Looping
+
+`{#each}` block allows you to loop only **array** or **array-like object** (i.e. it has a `.length` property).
+
+Here are some examples if you want to loop through data structures besides array.
+
+### Looping a map
+
+You can use spread operator `[...value]` for [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) to get an array of key value pairs.
+
+```svelte
+<script>
+  const map = new Map([['.svelte', 'Svelte'], ['.js', 'JavaScript']]);
+</script>
+
+{#each [...map] as [key, value]}
+	<div>
+		{key}: {value}
+  </div>
+{/each}
+```
+
+Both [`Map.keys()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/keys) and [`Map.values()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/values) method return an iterable. To use `{#each}` with iterable, you can use spread operator `[...value]` on the iterable.
+
+```svelte
+<script>
+  const map = new Map([['.svelte', 'Svelte'], ['.js', 'JavaScript']]);
+</script>
+
+{#each [...map.keys()] as key}
+	<div>
+		{key}
+  </div>
+{/each}
+
+{#each [...map.values()] as value}
+	<div>
+		{value}
+  </div>
+{/each}
+```
+
+### Looping a set
+
+You can use spread operator `[...value]` for [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) to get an array of items.
+
+```svelte
+<script>
+  const set = new Set(['.svelte', '.js']);
+</script>
+
+{#each [...set] as item}
+	<div>
+		{item}
+	</div>
+{/each}
+```
+
+### Looping a string
+
+[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) is considered an **array-like object** as it has `.length` property.
+
+```svelte
+<script>
+  const string = 'Svelte';
+</script>
+
+{#each string as character}
+	<div>
+		{character}
+	</div>
+{/each}
+```
+
+### Looping a generator function
+
+[Generator function `function*`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*) returns a [generator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator) object, which conforms to both the [iterable protocol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterable_protocol) and the [iterator protocol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol).
+
+To use `{#each}` with generator function, you can use spread operator `[...value]` on the generator.
+
+```svelte
+<script>
+	function* generator() {
+		yield '.svelte';
+		yield '.js';
+	}
+</script>
+
+{#each [...generator()] as item}
+	<div>
+		{item}
+	</div>
+{/each}
+```
+
+### Binding to spreaded item
+
+Once you spread a Map, Set, Generator, or any Iterable, you are creating a new array, and therefore binding (`bind:`) with the item may not work anymore.
+
+```svelte
+<script>
+  const map = new Map([['.svelte', 'Svelte'], ['.js', 'JavaScript']]);
+</script>
+
+{#each [...map] as [key, value]}
+  <!-- You can't change the value of the input, nor the value in the map -->
+  <input bind:value={value} />
+{/each}
+```
+
+To workaround this, you can use `on:input` listener
+
+```svelte
+<script>
+  const map = new Map([['.svelte', 'Svelte'], ['.js', 'JavaScript']]);
+</script>
+
+{#each [...map] as [key, value]}
+  <input
+    {value}
+    on:input={(event) => {
+      map.set(key, event.currentTarget.value);
+      map = map;
+    }}
+  />
+{/each}
+```
+
+## "Scoped Global" CSS
+
+Sometimes your template code doesn't match your CSS. If you generate html via `{@html}` or have some unstyled elements inside child components, you might want to style it, however Svelte won't let you write CSS that doesn't exist in the templates. You might feel forced to use `:global()` to make the CSS work, but that would leak it out to the rest of your app. So instead you could try this trick:
+
+```svelte
+<div>
+  <Paragraph />
+  <Paragraph />
+  <Paragraph />
+</div>
+<style>
+  div :global(p + p) {
+    margin-top: 1rem;
+  }
+</style>
+```
+
+Now that `p` styling will be output by Svelte, AND it won't leak out to the rest of your app.
+
+[Back to Table of Contents](https://github.com/svelte-society/recipes-mvp#table-of-contents)
+
+## Passing Values from JS to CSS Variables
+
+You can easily read in CSS media query values into JS with [`window.matchMedia`](https://developer.mozilla.org/en/docs/Web/API/Window/matchMedia). However, sometimes you want to pass information from JS to CSS variables, or have CSS Variables read into JS.
+
+To set CSS Variables on an element, you can use the `style` attribute.
+
+```svelte
+<!-- App.svelte -->
+<script>
+  import Child from './Child.svelte';
+  let backgroundColor = 'blue';
+  export let width = 30;
+  export let height = 30;
+</script>
+<label>Color <input type="color" bind:value={backgroundColor} /></label>
+<label>Width <input type="range" bind:value={width} /></label>
+<label>Height<input type="range" bind:value={height} /></label>
+
+<div style="
+	--backgroundColor: {backgroundColor};
+	--width: {width}px;
+	--height: {height}px;
+">
+  <Child />
+</div>
+
+<!-- Child.svelte -->
+<style>
+  div {
+    background-color: var(--backgroundColor);
+		height: var(--height);
+		width: var(--width);
+  }
+</style>
+<div />
+```
+
+Alternatively, you can have a custom action to do this. This is already available with [svelte-css-vars](https://github.com/kaisermann/svelte-css-vars).
+
+```svelte
+<!-- App.svelte -->
+<script>
+  import Circle from './Circle.svelte';
+</script>
+
+<Circle size="80x80" bg="url(https://placekitten.com/80/80) center" />
+
+<Circle
+  size={120}
+  bg="radial-gradient(circle, #051937, #004d7a, #008793, #00bf72, #a8eb12) " />
+
+<Circle
+  size={180}
+  bg="linear-gradient(45deg, #EE617D 25%, #3D6F8E 25%, #3D6F8E 50%, #EE617D 50%,
+  #EE617D 75%, #3D6F8E 75%, #3D6F8E 100%) center / 100% 20px" />
+
+<Circle size="600x200" bg="url(https://placekitten.com/250/200) center" />
+
+<!-- Circle.svelte -->
+<script>
+  import cssVars from 'svelte-css-vars';
+
+  export let bg = 'black';
+  export let size = '50x50';
+
+  $: [width, height = width] = size.toString().split(/[x|\/]/);
+  $: styleVars = {
+    width: `${width}px`,
+    height: `${height}px`,
+    bg,
+  };
+</script>
+
+<style>
+  div {
+		display: inline-block;
+    width: var(--width);
+    height: var(--height);
+    background: var(--bg);
+    border-radius: 50%;
+  }
+</style>
+
+<div use:cssVars={styleVars} />
+```
 
 [Back to Table of Contents](https://github.com/svelte-society/recipes-mvp#table-of-contents)
