@@ -394,19 +394,20 @@ import { writable, get } from "svelte/store";
 
 export function localStorageWritable(key, initialValue) {
   // retrieve existing Local Storage value if it exists
-  if (ls.getItem(key)) {
-    initialValue = JSON.parse(ls.getItem(key));
+  if (localStorage.getItem(key)) {
+    initialValue = JSON.parse(localStorage.getItem(key));
   }
 
   // store the initial state in Local Storage
-  ls.setItem(key, JSON.stringify(initialValue));
+  localStorage.setItem(key, JSON.stringify(initialValue));
+  
   // create the store
   const store = writable(initialValue);
 
   // return svelte writable interface
   return {
     set(newValue) {
-      ls.setItem(key, JSON.stringify(newValue));
+      localStorage.setItem(key, JSON.stringify(newValue));
       store.set(newValue);
     },
     update(cb) {
@@ -417,5 +418,7 @@ export function localStorageWritable(key, initialValue) {
   };
 }
 ```
+
+[CodeSandbox demo](https://codesandbox.io/s/cold-glade-67y9p)
 
 [Back to Table of Contents](https://github.com/svelte-society/recipes-mvp#table-of-contents)
