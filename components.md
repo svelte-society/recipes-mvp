@@ -5,10 +5,18 @@
 
 **Table of Contents**
 
-- [Using Fetch to Consume APIs with Svelte](#using-fetch-to-consume-apis-with-svelte)
-- [Getting references to Components generated in an #each block](#getting-references-to-components-generated-in-an-each-block)
-- [Form Validation with Svelte](#form-validation-with-svelte)
-- [Client-Side Storage with Svelte](#client-side-storage-with-svelte)
+- [Svelte Component Recipes](#svelte-component-recipes)
+  - [Using Fetch to Consume APIs with Svelte](#using-fetch-to-consume-apis-with-svelte)
+    - [Fetching on Component Mount in Svelte](#fetching-on-component-mount-in-svelte)
+    - [Fetching on Button Click in Svelte](#fetching-on-button-click-in-svelte)
+    - [Dealing with CORS Errors in Svelte](#dealing-with-cors-errors-in-svelte)
+    - [Further Links](#further-links)
+  - [Getting references to Components generated in an #each block](#getting-references-to-components-generated-in-an-each-block)
+  - [Form Validation with Svelte](#form-validation-with-svelte)
+  - [Client-Side Storage with Svelte](#client-side-storage-with-svelte)
+    - [Basic Implementation](#basic-implementation)
+    - [More Complex Values](#more-complex-values)
+    - [A Persistent Svelte Store](#a-persistent-svelte-store)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
