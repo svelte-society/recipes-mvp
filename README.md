@@ -21,9 +21,14 @@ Newcomers to Svelte should:
 2. [read thru the Svelte docs](https://svelte.dev/docs) (30 mins)
 3. or [go thru the Svelte workshop](https://svelte-workshop.netlify.app/) (3 hrs)
 
-First!
+## Other Recipe collections
 
-# Table of Contents
+we dont need to be the only collection, happy to link to others too
+
+- https://svelte.recipes/
+- yours?
+
+## Table of Contents
 
 - [Build Setup Recipes](/build-setup.md#build-setup-recipes)
   - [Using Svelte with other technologies (e.g. PostCSS, SCSS, TypeScript, and Babel)](/build-setup.md#using-svelte-with-other-technologies-eg-postcss-scss-typescript-and-babel)
