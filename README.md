@@ -3,7 +3,8 @@
 **Table of Contents**
 
 - [recipes-mvp](#recipes-mvp)
-- [Table of Contents](#table-of-contents)
+  - [Other Recipe collections](#other-recipe-collections)
+  - [Table of Contents](#table-of-contents)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
