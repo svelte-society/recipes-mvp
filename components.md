@@ -307,6 +307,25 @@ Note that when passing a class to component, you may need to set it to global `:
 
 ## Form Validation with Svelte
 
+### Prevent Window Close if Input not saved
+
+```svelte
+<script>
+	let value = ''
+	let savedValue = ''
+	import {onMount} from 'svelte'
+	onMount(() => {
+		window.onbeforeunload = e => value === savedValue && undefined
+		return () => window.onbeforeunload = undefined
+	})
+</script>
+<input bind:value />
+<button on:click={() => savedValue = value}
+	disabled={savedValue === value}>Save</button>
+```
+
+For some reason, using `<svelte:window>` binding doesn't work for this event.
+
 ### Form Validation with Yup
 
 [Yup](https://github.com/jquense/yup) is a JavaScript schema builder for value passing and validation. We can use Yup to help us validate forms in Svelte.
