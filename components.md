@@ -311,6 +311,9 @@ Note that when passing a class to component, you may need to set it to global `:
 
 Instead of using `checked` and `on:change` to manage a group of radio buttons, use `bind:group`. (Credit: [Li Hau](https://twitter.com/lihautan/status/1275808445753516032))
 
+![image](https://user-images.githubusercontent.com/6764957/85953244-89bd9e00-b9a1-11ea-802c-ec7574be4dcb.png)
+
+
 You can bind any object as the value - not just strings:
 
 - bind to an object: https://svelte.dev/repl/2b143322f242467fbf2b230baccc0484?version=3.23.2
