@@ -307,15 +307,111 @@ When you want to "forward" any attributes like `class` or `style` to your compon
 <!-- App.svelte -->
 <Component class="li-item-class">{name}</Component>
 ```
+
 [Svelte Playground here](https://svelte.dev/repl/24139d8599d348b9bcad5c0a1f471230?version=3.23.0). See [relevant part of docs](https://svelte.dev/docs#Attributes_and_props) for more.
 
 This is helpful where, for example, [using MDSveX](https://github.com/pngwn/MDsveX/), you want to create a bunch of Svelte wrappers to DOM elements like `H1`, `P`, and `A` instead of the normal `h1`, `p`, and `a`.
 
 Note that when passing a class to component, you may need to set it to global `:global(.title){...}`
 
-## Form Validation with Svelte
+## Forms with Svelte
 
-_to be written_
+### Bind Checkbox Groups
+
+Instead of using `checked` and `on:change` to manage a group of radio buttons, use `bind:group`. (Credit: [Li Hau](https://twitter.com/lihautan/status/1275808445753516032))
+
+![image](https://user-images.githubusercontent.com/6764957/85953244-89bd9e00-b9a1-11ea-802c-ec7574be4dcb.png)
+
+
+You can bind any object as the value - not just strings:
+
+- bind to an object: https://svelte.dev/repl/2b143322f242467fbf2b230baccc0484?version=3.23.2
+- bind to an array: https://svelte.dev/repl/02eda4dbf10648888827e38800703575?version=3.23.2
+
+### Prevent Window Close if Input not saved
+
+```svelte
+<script>
+	let value = ''
+	let savedValue = ''
+
+	function unload(event) {
+		if (savedValue === value) return;
+		event.preventDefault();
+		event.returnValue = 'dirty value';
+		return 'dirty value';
+	}
+</script>
+<input bind:value />
+
+<button on:click={() => savedValue = value}>Save</button>
+<svelte:window on:beforeunload={unload} />
+```
+
+REPL: https://svelte.dev/repl/00fd6d0df4bb4c6596d6f7ddb6d4b96a?version=3.23.2
+
+### Form Validation with Yup
+
+[Yup](https://github.com/jquense/yup) is a JavaScript schema builder for value passing and validation. We can use Yup to help us validate forms in Svelte.
+
+We can use `bind:value` to bind input value, and validate the form using `schema.validate(values)`.
+
+```svelte
+<script>
+  // Define schema with Yup
+  import * as yup from 'yup';
+  const schema = yup.object().shape({
+    email: yup
+      .string()
+      .required('Please provide your email')
+      .email("Email doesn't look right"),
+    password: yup.string().required('Password is required'),
+  });
+
+  let values = {};
+  let errors = {};
+
+  async function submitHandler() {
+    try {
+      // `abortEarly: false` to get all the errors
+      await schema.validate(values, { abortEarly: false });
+      alert(JSON.stringify(values, null, 2));
+      errors = {};
+    } catch (err) {
+      errors = extractErrors(err);
+    }
+  }
+  function extractErrors(err) {
+    return err.inner.reduce((acc, err) => {
+      return { ...acc, [err.path]: err.message };
+    }, {});
+  }
+</script>
+
+<form on:submit|preventDefault={submitHandler}>
+  <div>
+    <input
+      type="text"
+      name="email"
+      bind:value={values.email}
+      placeholder="Your email"
+    />
+    {#if errors.email}{errors.email}{/if}
+  </div>
+  <div>
+    <input
+      type="password"
+      name="password"
+      bind:value={values.password}
+      placeholder="Password"
+    />
+    {#if errors.password}{errors.password}{/if}
+  </div>
+  <div>
+    <button type="submit">Register</button>
+  </div>
+</form>
+```
 
 ## Client-Side Storage with Svelte
 
