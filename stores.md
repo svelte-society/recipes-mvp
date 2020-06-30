@@ -2,6 +2,7 @@
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 **Table of Contents**
 
 - [Stores](#stores)
@@ -157,28 +158,31 @@ See it in action below. The following example uses the `synced` store to convert
 
 ```html
 <script>
-  import {synced} from './linkable'
+  import { synced } from "./linkable";
 
-  export let initialCelsius = null
-  export let initialFahrenheit = null
+  export let initialCelsius = null;
+  export let initialFahrenheit = null;
 
   const [C, F] = synced(
-    (C) => (C * 9/5) + 32,
-    (F) => (F - 32) * 5/9
+    (C) => (C * 9) / 5 + 32,
+    (F) => ((F - 32) * 5) / 9
   );
 
   if (initialCelsius && initialFahrenheit) {
-    console.error('You can only set one inital temperature. Please set initialCelsius or initialFahrenheit but not both.')
+    console.error(
+      "You can only set one inital temperature. Please set initialCelsius or initialFahrenheit but not both."
+    );
   } else if (initialCelsius) {
-    $C = initialCelsius
+    $C = initialCelsius;
   } else if (initialFahrenheit) {
-    $F = initialFahrenheit
+    $F = initialFahrenheit;
   } else {
-    $C = 0
+    $C = 0;
   }
 </script>
 
-<input bind:value={$C} type=number /> ºC = <input bind:value={$F} type=number /> ºF
+<input bind:value="{$C}" type="number" /> ºC =
+<input bind:value="{$F}" type="number" /> ºF
 ```
 
 Play around with it in the [REPL](https://svelte.dev/repl/abbc56bdbd6e45c8ad5cd6f75108c6d8?version=3).
@@ -218,5 +222,96 @@ function writable(init) {
 From this point you could add whatever functionality you wanted.
 
 Edit: Probably worth mentioning that this is a full writable implementation, only the subscribe method and its return value (an unsubscribe function) are required to be a valid store.
+
+## Reactive Context With Stores
+
+While a Svelte `store` provides a mechanism to access state by multiple unrelated components the Svelte `context API` provides a way for a parent component to pass down data to any child components. This way data doesn't have to be passed down as props.
+
+However, the `getContext` and `setContext` functions can only be called during component initialization which means their contents cannot be updated during runtime.
+
+So if you update a variable pulled from context... it won't update in any **Child** components that uses it.
+
+```svelte
+//App.svelte
+<script context="module">
+  export const KEY = {}
+</script>
+
+<script>
+	import {setContext} from 'svelte';
+	import Name from './Name.svelte';
+
+	let name = 'Rick';
+
+	setContext(KEY, name);
+
+	function changeName(){
+		name = 'PickleRick'; // Only changes name locally -> Doesn't change name in <Name/>
+		console.log(name) // logs 'Pickle Rick'
+	}
+</script>
+
+<Name />
+<button on:click={changeName}>Change Name</button>
+```
+
+```svelte
+//Name.svelte
+<script>
+	import {getContext} from 'svelte';
+  import {KEY} from './App.svelte'
+
+	let name = getContext(KEY);
+</script>
+
+<h1> My name is: {name}</h1>
+```
+
+> The `export const KEY = {}` in the `context="module"` script tag is just a way to avoid namespace collisions when using context by using an object key instead of a string.
+
+You can see the `name` does indeed update as it's new value is logged. However the context has already been pulled in the `Name` child component so nothing is reflected on screen.
+
+So how do you use context to pass information down AND have it's content update at runtime? We can simply use a store!
+
+```svelte
+//App.svelte
+<script context="module">
+  export const KEY = {}
+</script>
+
+<script>
+	import {setContext} from 'svelte';
+	import {writable} from 'svelte/store';
+
+	import Name from './Name.svelte';
+
+	let name = writable('Rick');
+
+	setContext(KEY, name);
+
+	function changeName(){
+		$name = 'PickleRick'; // Changes the store -> Changes name in <Name/>
+		console.log($name) // logs 'Pickle Rick'
+	}
+</script>
+
+<Name />
+<button on:click={changeName}>Change Name</button>
+```
+
+```svelte
+//Name.svelte
+<script>
+	import {getContext} from 'svelte';
+  import {KEY} from './App.svelte'
+
+	let name = getContext(KEY);
+</script>
+
+<h1> My name is: {$name}</h1>
+```
+
+- Context w/ No Update: [REPL](https://svelte.dev/repl/4f59d7fba0904eeb9bb6c7ae04a397a6?version=3.23.2)
+- Context w/ Update: [REPL](https://svelte.dev/repl/2e15f1fc239a4c1193929dc3b21be6e7?version=3.23.2)
 
 [Back to Table of Contents](https://github.com/svelte-society/recipes-mvp#table-of-contents)
