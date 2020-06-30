@@ -7,7 +7,7 @@
 - [Using Fetch to Consume APIs with Svelte](#using-fetch-to-consume-apis-with-svelte)
 - [Getting references to Components generated in an #each block](#getting-references-to-components-generated-in-an-each-block)
 - [Passing attributes to component DOM element](#passing-attributes-to-component-dom-element)
-- [Form Validation with Svelte](#form-validation-with-svelte)
+- [Forms with Svelte](#forms-with-svelte)
 - [Client-Side Storage with Svelte](#client-side-storage-with-svelte)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -305,7 +305,19 @@ This is helpful where, for example, [using MDSveX](https://github.com/pngwn/MDsv
 
 Note that when passing a class to component, you may need to set it to global `:global(.title){...}`
 
-## Form Validation with Svelte
+## Forms with Svelte
+
+### Bind Checkbox Groups
+
+Instead of using `checked` and `on:change` to manage a group of radio buttons, use `bind:group`. (Credit: [Li Hau](https://twitter.com/lihautan/status/1275808445753516032))
+
+![image](https://user-images.githubusercontent.com/6764957/85953244-89bd9e00-b9a1-11ea-802c-ec7574be4dcb.png)
+
+
+You can bind any object as the value - not just strings:
+
+- bind to an object: https://svelte.dev/repl/2b143322f242467fbf2b230baccc0484?version=3.23.2
+- bind to an array: https://svelte.dev/repl/02eda4dbf10648888827e38800703575?version=3.23.2
 
 ### Prevent Window Close if Input not saved
 
