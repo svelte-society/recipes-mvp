@@ -313,18 +313,21 @@ Note that when passing a class to component, you may need to set it to global `:
 <script>
 	let value = ''
 	let savedValue = ''
-	import {onMount} from 'svelte'
-	onMount(() => {
-		window.onbeforeunload = e => value === savedValue && undefined
-		return () => window.onbeforeunload = undefined
-	})
+
+	function unload(event) {
+		if (savedValue === value) return;
+		event.preventDefault();
+		event.returnValue = 'dirty value';
+		return 'dirty value';
+	}
 </script>
 <input bind:value />
-<button on:click={() => savedValue = value}
-	disabled={savedValue === value}>Save</button>
+
+<button on:click={() => savedValue = value}>Save</button>
+<svelte:window on:beforeunload={unload} />
 ```
 
-For some reason, using `<svelte:window>` binding doesn't work for this event.
+REPL: https://svelte.dev/repl/00fd6d0df4bb4c6596d6f7ddb6d4b96a?version=3.23.2
 
 ### Form Validation with Yup
 
