@@ -440,6 +440,28 @@ Local Storage uses a key/value system for storing data. It is limited to storing
 
 Type something in the `input` field and hit the `button`. When you refresh the page, voila the data has persisted and is used as the default value for the `value` prop.
 
+If you want to automatically store it without a save, use a `$:`
+
+```svelte
+<script>
+let lStore = {};
+let storeKey = "MY_STORE";
+
+try {
+  lstore = JSON.parse(localStorage.getItem(storeKey));
+} catch (e) {}
+
+$: if (lStore) {
+  localStorage.setItem(storeKey, JSON.stringify(lStore));
+}
+
+lStore.name = lStore.name || 'world';
+</script>
+
+<input bind:value="{lStore.name}" />
+<h1>Hello {lStore.name}!</h1>
+```
+
 ### More Complex Values
 
 Since Local Storage only works with simple values, more complex values like objects or arrays must be serialized and deserialized with JSON in order to store them in Local Storage.
