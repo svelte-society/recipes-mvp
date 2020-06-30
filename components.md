@@ -2,13 +2,22 @@
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 **Table of Contents**
 
-- [Using Fetch to Consume APIs with Svelte](#using-fetch-to-consume-apis-with-svelte)
-- [Getting references to Components generated in an #each block](#getting-references-to-components-generated-in-an-each-block)
-- [Passing attributes to component DOM element](#passing-attributes-to-component-dom-element)
-- [Forms with Svelte](#forms-with-svelte)
-- [Client-Side Storage with Svelte](#client-side-storage-with-svelte)
+- [Svelte Component Recipes](#svelte-component-recipes)
+  - [Using Fetch to Consume APIs with Svelte](#using-fetch-to-consume-apis-with-svelte)
+    - [Fetching on Component Mount in Svelte](#fetching-on-component-mount-in-svelte)
+    - [Fetching on Button Click in Svelte](#fetching-on-button-click-in-svelte)
+    - [Dealing with CORS Errors in Svelte](#dealing-with-cors-errors-in-svelte)
+    - [Further Links](#further-links)
+  - [Getting references to Components generated in an #each block](#getting-references-to-components-generated-in-an-each-block)
+  - [Passing attributes to component DOM element](#passing-attributes-to-component-dom-element)
+  - [Form Validation with Svelte](#form-validation-with-svelte)
+  - [Client-Side Storage with Svelte](#client-side-storage-with-svelte)
+    - [Basic Implementation](#basic-implementation)
+    - [More Complex Values](#more-complex-values)
+    - [A Persistent Svelte Store](#a-persistent-svelte-store)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -406,6 +415,154 @@ We can use `bind:value` to bind input value, and validate the form using `schema
 
 ## Client-Side Storage with Svelte
 
-_to be written_
+Persistant state using client-side storage enables users to access data even when they are offline. These recipes are ways to persist state in Svelte using Local Storage.
+
+Local Storage uses a key/value system for storing data. It is limited to storing only simple values but complex data can be stored if you encode and decode the values with JSON. In general, Local Storage is appropriate for smaller sets of data you would want to persist - things like user preferences or form data. Larger data with more complex storage needs would be better suited for other means.
+
+### Basic Implementation
+
+```svelte
+<script>
+  let value = localStorage.getItem("name") || "";
+
+  function saveToLocal() {
+    localStorage.setItem("name", value);
+  }
+</script>
+
+<div>
+  <h1>Svelte with Basic Local Storage</h1>
+  <input type="text" bind:value />
+  <button on:click="{saveToLocal}">Save to Local</button>
+  <p>{value}</p>
+</div>
+```
+
+Type something in the `input` field and hit the `button`. When you refresh the page, voila the data has persisted and is used as the default value for the `value` prop.
+
+If you want to automatically store it without a save, use a `$:`
+
+```svelte
+<script>
+let lStore = {};
+let storeKey = "MY_STORE";
+
+try {
+  lstore = JSON.parse(localStorage.getItem(storeKey));
+} catch (e) {}
+
+$: if (lStore) {
+  localStorage.setItem(storeKey, JSON.stringify(lStore));
+}
+
+lStore.name = lStore.name || 'world';
+</script>
+
+<input bind:value="{lStore.name}" />
+<h1>Hello {lStore.name}!</h1>
+```
+
+### More Complex Values
+
+Since Local Storage only works with simple values, more complex values like objects or arrays must be serialized and deserialized with JSON in order to store them in Local Storage.
+
+```svelte
+<script>
+  import { onMount } from "svelte";
+
+  let todos = [];
+  let newTodo;
+
+  function addTodo() {
+    // ensure they actually typed something
+    if (!newTodo) {
+      return;
+    }
+
+    todos = [...todos, newTodo];
+    newTodo = "";
+    saveTodosToLocal();
+  }
+
+  function removeTodo(index) {
+    const length = todos.length;
+    todos = [...todos.slice(0, index), ...todos.slice(index + 1, length)];
+    console.log(todos);
+    saveTodosToLocal();
+  }
+
+  function saveTodosToLocal() {
+    const parsed = JSON.stringify(todos);
+    localStorage.setItem("todos", parsed);
+  }
+
+  onMount(() => {
+    if (localStorage.getItem("todos")) {
+      try {
+        todos = JSON.parse(localStorage.getItem("todos"));
+      } catch (e) {
+        localStorage.removeItem("todos");
+      }
+    }
+  });
+</script>
+
+<div>
+  <h2>Todo List</h2>
+  <ul>
+    {#each todos as todo, i}
+    <li>
+      <span>{todo}</span>
+      <button on:click={() => removeTodo(i)}>Remove Todo</button>
+    </li>
+    {/each}
+  </ul>
+  <p>
+    <input type="text" bind:value={newTodo} />
+    <button on:click={addTodo}>Add Todo</button>
+  </p>
+</div>
+```
+
+Here the data is initialized as an empty array and then `onMount` is used to get any prior data stored in Local Storage. Since the data has to be deserialized first this approach is used instead of the previous version where the data was initialized with any existing Local Storage result.
+
+The rest is pretty standard Svelte Todo app business.
+
+### A Persistent Svelte Store
+
+For cases when you need more than localized component state, Svelte offers _stores_. Svelte stores, however, do not persist data. We're going wrap the svelte `writable` store implementation with some Local Storage functionality.
+
+```js
+// localStorageStore.js
+import { writable, get } from "svelte/store";
+
+export function localStorageWritable(key, initialValue) {
+  // retrieve existing Local Storage value if it exists
+  if (localStorage.getItem(key)) {
+    initialValue = JSON.parse(localStorage.getItem(key));
+  }
+
+  // store the initial state in Local Storage
+  localStorage.setItem(key, JSON.stringify(initialValue));
+  
+  // create the store
+  const store = writable(initialValue);
+
+  // return svelte writable interface
+  return {
+    set(newValue) {
+      localStorage.setItem(key, JSON.stringify(newValue));
+      store.set(newValue);
+    },
+    update(cb) {
+      const currentState = get(store);
+      this.set(cb(currentState));
+    },
+    subscribe: store.subscribe,
+  };
+}
+```
+
+[CodeSandbox demo](https://codesandbox.io/s/cold-glade-67y9p)
 
 [Back to Table of Contents](https://github.com/svelte-society/recipes-mvp#table-of-contents)
