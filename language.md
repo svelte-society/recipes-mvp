@@ -114,13 +114,13 @@ Another situation that can sometimes cause unexpected results is when you reassi
     num: 0
   };
 
-  function(obj) {
+  function undateNum(obj) {
     obj.num = 25;
   }
 </script>
 
 <button on:click={() => updateNum(obj)}>Update</button>
-<p>{num}</p>
+<p>{obj.num}</p>
 ```
 
 This example behaves the same as the previous example, except it is perhaps even more confusing. In this case, the `obj` variable is being _shadowed_ while inside the function, so any assignments to `obj` inside this function are assignments to the function parameter rather than the top-level `obj` variable. It refers to the same value, and it has the same name, but it is a _different_ variable inside the function scope.
