@@ -4,6 +4,7 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
+- [Tooltip action](#tooltip-action)
 - [Dynamic CSS in Svelte style tags](#dynamic-css-in-svelte-style-tags)
 - [Creating Custom Scroll Actions with Svelte](#creating-custom-scroll-actions-with-svelte)
 
