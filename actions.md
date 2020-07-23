@@ -9,6 +9,10 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
+## Tooltip action
+
+https://svelte.dev/repl/d38447682306488a8ec20e520c0dafa0?version=3.24.0
+
 ## Dynamic CSS in Svelte style tags
 
 In Svelte it is not currently possible to use variables in the `<style>` tags. This is a workaround to enable that using an action. It is simple and uses css custom properties (thus it is not something that is supported in Internet Explorer).
