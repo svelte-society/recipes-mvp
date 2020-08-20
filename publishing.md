@@ -2,15 +2,11 @@
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
 **Table of Contents**
 
-- [Publishing Svelte Components/Deploying Svelte Apps](#publishing-svelte-componentsdeploying-svelte-apps)
-  - [Packaging Svelte Components for npm](#packaging-svelte-components-for-npm)
-  - [Dockerize a Svelte App](#dockerize-a-svelte-app)
-    - [Building Svelte App in a Docker image](#building-svelte-app-in-a-docker-image)
-  - [Dockerize a Sapper App](#dockerize-a-sapper-app)
-    - [Building Sapper App in a Docker image](#building-sapper-app-in-a-docker-image)
+- [Packaging Svelte Components for npm](#packaging-svelte-components-for-npm)
+- [Dockerize a Svelte App](#dockerize-a-svelte-app)
+- [Dockerize a Sapper App](#dockerize-a-sapper-app)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
