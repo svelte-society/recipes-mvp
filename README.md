@@ -1,3 +1,13 @@
+---
+
+## This Repo Has Been Archived
+
+this repo has been archived - pls head to https://github.com/svelte-society/sveltesociety.dev/tree/master/src/pages/recipes to contribute recipes!
+
+you can now see the recipes here! https://sveltesociety.dev/recipes
+
+---
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
